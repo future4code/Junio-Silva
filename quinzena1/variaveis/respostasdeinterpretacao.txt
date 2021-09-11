@@ -1,0 +1,11 @@
+//RESPOSTAS EXERCICIOS DE INTERPRETAÇÃO
+
+Questão 1: será impresso no cosole uma linha com o numero 10, que é o valor de B. Depois você troca o valor de 10 para 5, por isso no segundo comando será impresso 10 e 5.
+
+Questão 2: será impresso no console 3x o numero 10.  acabou que com as trocas de valores que foram feitos todas as variaveis terminaram valendo 10.
+
+Questão 3: o Programa coleta as informações via prompt e depois divide as horas que a pessoa trabalha pelo tanto que recebe e imprime na tela quanto recebe por hora.
+Para mim, as variaveis ficariam melhor assim:
+let horasTrabalhoDia = prompt("Quantas horas você trabalha por dia?")
+let pagamentoDia = prompt("Quanto você recebe por dia?")
+alert(`Voce recebe ${horasTrabalhoDia/pagamentoDia} por hora`)
