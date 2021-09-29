@@ -1,18 +1,18 @@
-//===========================================//
+// ===========================================//
 //        EXERCICIOS  DE INTERPRETACAO       //
-//===========================================//
+// ===========================================//
 
-//RESPOSTA1: é um loop  que vai somar numero a numero de 1 à 5, e ir atribuindo o resultado das somas a variavel "valor"
-//RESPOSTA2: A) Será impresso no console todos os numeros que são maiores que 18
+// RESPOSTA1: é um loop  que vai somar numero a numero de 1 à 5, e ir atribuindo o resultado das somas a variavel "valor"
+// RESPOSTA2: A) Será impresso no console todos os numeros que são maiores que 18
 //           B) Sim, só o for.. of é suficiente.
-//RESPOSTA 3: seriam impresso no console até a linha com 4 asteriscos.
+// RESPOSTA 3: seriam impresso no console até a linha com 4 asteriscos.
 
 
-//===========================================//
+// ===========================================//
 //     EXERCICIOS  DE ESCRITA DE CÓDIGOS     //
-//===========================================//
+// ===========================================//
 
-//EXERCICIO 1: A) B) e C)
+// EXERCICIO 1: A) B) e C)
 
 // let quantidadeDeAnimais = Number(prompt("Quantos animais você tem?"))
 // let arrayDeAnimais = []
@@ -24,8 +24,8 @@
 // } else{console.log("Que pena! Você pode adotar um pet!")}
 // console.log(arrayDeAnimais)
 
-//EXERCICIO 2
-//EXERCICIO 2A)
+// EXERCICIO 2
+// EXERCICIO 2A)
 // const arrayOriginal = [80, 30, 130, 40, 60, 21, 70, 120, 90, 103, 110, 55]
 
 // const funcaoDoarray = (array) => {
@@ -34,7 +34,7 @@
 //     console.log(indiceDavez)
 // }}
 // console.log(funcaoDoarray(arrayOriginal))
-//EXERCICIO 2B)
+// EXERCICIO 2B)
 // const arrayOriginal = [80, 30, 130, 40, 60, 21, 70, 120, 90, 103, 110, 55]
 
 // const funcaoDoarray2 = (array) => {
@@ -53,7 +53,7 @@
 
 // console.log(arrayDePares(arrayOriginal))
 
-//EXERCICIO 2D)
+// EXERCICIO 2D)
 // const arrayOriginal = [80, 30, 130, 40, 60, 21, 70, 120, 90, 103, 110, 55]
 // let valorMaximo = 0
 // let valorMinimo = Infinity
