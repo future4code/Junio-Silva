@@ -1,0 +1,27 @@
+Faça um resumo, abordando os seguintes itens :
+1. Quais são os 7 passos fundamentais para a resolução de problemas e como eles 
+podem nos ajudar a solucionar nossos desafios de programação?
+
+RESUMO: 
+Para solucionarmos problemas de programação, nao tem uma maneira expecífica, 
+cada pessoa pode se desenvolver e aprender os metodos que mais se identificam, 
+mas enquanto estamos aprendendo a programar, podemos seguir os seguintes passos:
+
+1: Ler o enunciado 2 veses. Uma para se contextualizar, 
+e outra com mais atenção para se atentar aos detalhes do que se precisa.
+
+2: Retirar do enunciado informações importantes para o código. 
+como ex: Informações que vão virar variaveis, funções, arrays e objetos e assim por dinte.
+
+3: Pensar em quais informações vou usar para a entrada no meu código, 
+e o que eu quero que o código me retorne como resultado de seu funcionamento.
+
+4: Fazer um código visual, em Fluxograma, portugol ou até mesmo com papel e caneta,
+isso ajuda a deixar a idéia de solução mais clara
+
+5: Fazer o código, colocar a  lógica pensada e códigos e  tornar isso funcional, em código feio mesmo.
+
+6: Fazer um teste bruto do código, mesmo que com Entradas fictícias.
+
+7: Refatorar, ver o que pode ser melhorado no código e torna-lo um código mais legível ou "bonito".
+
