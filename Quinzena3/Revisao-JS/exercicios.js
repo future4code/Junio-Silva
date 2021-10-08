@@ -40,24 +40,41 @@ function retornaMaiorNumero(array) {
 
 // EXERCÍCIO 05
 function retornaQuantidadeElementos(array) {
-  
+  return array.length
 }
 
 // EXERCÍCIO 06
 function retornaExpressoesBooleanas() {
+  const booleano1 = true
+  const booleano2 = false
+  const booleano3 = !booleano2 
+  const booleano4 = !booleano3 
+
 
 }
 
 // EXERCÍCIO 07
-function retornaNNumerosPares(n) {
-
-}
+  function retornaNNumerosPares(n) {
+    let numerosPares = []
+    for (let i = 0; numerosPares.length < n; i++) {
+        if (i % 2 == 0) {
+            numerosPares.push(i)
+        }
+    }
+    return numerosPares
+  }
 
 // EXERCÍCIO 08
 function checaTriangulo(a, b, c) {
   // return 'Escaleno'
   // return 'Equilátero'
   // return 'Isósceles'
+  if(a === b && b === c && c===a){
+    return "Equilátero"
+  } else if(a === b || c===a || c === b){
+    return "Isósceles"
+  }else{
+    return"Escaleno"}
 }
 
 // EXERCÍCIO 09
