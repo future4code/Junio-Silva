@@ -50,8 +50,14 @@ function retornaExpressoesBooleanas() {
   const booleano3 = !booleano2 
   const booleano4 = !booleano3 
 
+let resposta1 = booleano1 && booleano2 && !booleano4 
+let resposta2 = (booleano1 && booleano2) || !booleano3
+let resposta3 = (booleano2 || booleano3) && (booleano4 || booleano1)
+let resposta4 = !(booleano2 && booleano3) || !(booleano1 && booleano3)
+let resposta5 = !(booleano1) && !(booleano3) || (!booleano4 && booleano3 && booleano3)
 
-
+let respostas = [resposta1,resposta2,resposta3,resposta4,resposta5]
+return respostas
 }
 
 // EXERCÍCIO 07
@@ -117,22 +123,18 @@ return novoArray
 
 // EXERCÍCIO 11
 function ordenaArray(array) {
-//   let auxiliar
-//   let controle
-//   for(let i = 0; i < array.length; ++i) {
-//     controle = true
-//     for(let i = 0; i < (array - 1); ++i) {
-//       if(array[i] > array[i + 1]){
-//         auxiliar = array[i]
-//         array[i] = array[i + 1]
-//         array[i + 1] = auxiliar
-//         controle = false;
-//       }
-//     }
-//     if(controle){
-//       break;
-//     }
-//   }
+  let aux
+  let condicao 
+  
+    for(let i =0 ; i < array.length ; i+=1){
+      for(let x = 0; x < (array.length-1) ; x+=1){
+        if(array[x] > array[x+1]){
+          aux = array[x];
+          array[x] = array[x+1];
+          array[x+1] = aux;
+        }
+      }
+    } return array
 }
 
 // EXERCÍCIO 12
@@ -202,39 +204,82 @@ function anonimizaPessoa(pessoa) {
 
 // EXERCÍCIO 16A
 function maioresDe18(arrayDePessoas) {
+  let maioresDeIdade = arrayDePessoas.filter((valor, index, array) => {
+    if(valor.idade>=18){
+      return valor
+    }
+})
+return maioresDeIdade
 }
+
 // EXERCÍCIO 16B
 function menoresDe18(arrayDePessoas) {
+  let menoresDeIdade = arrayDePessoas.filter((valor, index, array) => {
+    if(valor.idade<18){
+      return valor
+    }
+})
+return menoresDeIdade
 }
 
 // EXERCÍCIO 17A
 function multiplicaArrayPor2(array) {
-
+let arrayMultiplicadoPor2 = array.map((valor) => {
+  let multiplicacao = valor * 2
+  return multiplicacao
+})
+return arrayMultiplicadoPor2
 }
 
 // EXERCÍCIO 17B
 function multiplicaArrayPor2S(array) {
-
+  let arrayMultiplicadoPor2 = array.map((valor) => {
+    let multiplicacao = valor*2
+    multiplicacao = String(multiplicacao)
+    return multiplicacao
+ })
+return arrayMultiplicadoPor2
 }
 
 // EXERCÍCIO 17C
 function verificaParidade(array) {
-
+let arrayPares = array.map((valor)=>{
+  if(valor%2===0){
+    return `${valor} é par`
+  }
+else
+{return `${valor} é ímpar` }
+})
+return arrayPares
 }
 
 // EXERCÍCIO 18A
 function retornaPessoasAutorizadas(pessoas) {
-
+  let pessoasAutorizadas = pessoas.filter((valor)=>{
+    if(valor.idade > 14 && valor.idade < 60 && valor.altura>=1.5){
+     return valor
+    }
+  }) 
+  return pessoasAutorizadas
 }
 
 // EXERCÍCIO 18B
 function retornaPessoasNaoAutorizadas(pessoas) {
-
+  let pessoasNaoAutorizadas = pessoas.filter((valor)=>{
+    if(valor.idade <= 14 || valor.idade > 60 || valor.altura<1.5){
+     return valor
+    }
+  }) 
+  return pessoasNaoAutorizadas
 }
 
 // EXERCÍCIO 19A
 function ordenaPorNome(consultasNome) {
-
+  consultasNome.sort((a, b) =>{
+    let textA = a.nome.toUpperCase();
+    let textB = b.nome.toUpperCase();
+    return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+});
 }
 
 // EXERCÍCIO 19B
