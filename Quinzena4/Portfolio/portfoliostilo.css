@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Nunito+Sans:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Manrope:wght@800&family=Nunito+Sans:wght@200&display=swap');
+*{
+    font-family: "Nunito Sans", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgba(22, 4, 52,1);
+    font-size: 20px;
+}
+
+main { 
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    background-image:url(imgs/rm251-mind-01.jpg);
+    background-repeat: repeat;
+    background-position: 100%;
+    background-size: 100%;
+    /* flex-grow: 1; */
+}
+
+footer{
+    height: 50px;
+    background-color: rgba(22, 4, 52,1);
+}
+
+h1{
+    font-size: 70px;
+    font-family: "Fredericka the Great" ;
+    color: white;
+    margin: 40px 0;
+}
+h2{
+    font-size: 35px;
+    font-family:"Manrope" ;
+    color: rgb(180, 157, 157);
+}
+
+.principal {
+    display: grid;
+    height: 100vh;
+    grid-template-rows: 160px 1fr 50px;
+}
+
+.bloco1{
+    background-color:rgba(22, 4, 52,0.8);
+    text-align: center ;
+    margin: 20px 10px;
+    padding: 20px;
+}
+.bloco2{
+    background-color:rgba(22, 4, 52,0.8);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr ;
+    text-align: center ;
+    margin: 20px 10px;
+    padding: 20px;  
+}
+
+.fotoconteiner{
+    height: 500px;
+    padding: 5% 0;
+}
+.foto_menu{
+    height: 150px;
+    margin: 0 100px;
+}
+.fotosocialmedia{
+    display: flex;
+    height: 70px;
+}
+
+.menu{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin-top: 30px;
+    border-radius: 5%;
+    justify-content: flex-start
+}
+
