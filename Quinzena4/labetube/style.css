@@ -1,0 +1,81 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px ;
+    align-items: center;
+    background-color: rgb(255, 136, 0);
+}
+main {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0 0 0;
+  margin: 0 20px;
+  flex-grow: 1
+}
+
+#divBusca{
+    display:flex;
+    background-color:#E0EEEE;
+    border:solid 2px #754200;
+    border-radius:10px;
+    width:300px;
+    height:32px;
+    padding: 4px;
+    justify-content: space-between;
+  }
+  
+  #txtBusca{
+    float:left;
+    background-color:transparent;
+    padding-left:10px;
+    font-size:14px;
+    border:none;
+    height:32px;
+    width:191px;
+  }
+  
+  #divBusca img {
+    height: 16px;
+    padding: 5px;
+}
+
+.cardvideo {
+  width: 250;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 3px 3px 6px rgb(24, 105, 37);
+}
+
+.video-miniatura {
+  height: 200px;
+}
+.blocos-conteiner{
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr  ;
+  row-gap: 40px;
+  column-gap: 40px;
+}
+
+.subtitulo-video {
+  font-size: 25px;
+  margin: 30px 0
+}
+
+.principal {
+  height: 50px;
+  background-color:  rgb(255, 136, 0); 
+  text-align: center;
+  padding-top: 20px;
+}
+
+.mainvideo {
+  height: 84vh;
+}
