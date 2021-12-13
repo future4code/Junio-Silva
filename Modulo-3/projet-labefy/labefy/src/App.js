@@ -1,24 +1,32 @@
 import React from 'react';
 import './App.css';
-import TelaCriarPlaylists from './Components/TelaCriarPlayLists';
-import TelaListaDePlaylists from './Components/TelaListaDePlaylists';
+import TelaCriarPlaylists from './components/TelaCriarPlayLists';
+import TelaListaDePlaylists from './components/TelaListaDePlaylists';
 
 class App extends React.Component {
-  status  = {
-    mostraPlaylists: true
+  state  = {
+    mostraPlaylists: false
   }
-//FALTA FAZER A RENDERIZAÇÃO CONDICIONAL AQUI!
-  // mudaCondicionalDeLista =  () => {
-  //   if(this.state.mostraPlaylists === true) 
-  // }
+
+    mudaCondicionalDeLista =  () => {
+    this.state.mostraPlaylists ? this.setState({mostraPlaylists: false}) : this.setState({mostraPlaylists: true})
+    }
 
   render(){
+
+    let mostraLista = <h1>Página de erro</h1> 
+    if(this.state.mostraPlaylists){
+      mostraLista = <TelaListaDePlaylists />
+    }else{
+      mostraLista= ""
+    }
+
     return (
       <div>
         <TelaCriarPlaylists />
         <br/><hr />
-        <br/><button>Mostrar Playlist</button>
-        <TelaListaDePlaylists  />
+        <br/><button onClick={this.mudaCondicionalDeLista}>Mostrar/Esconder Playlists</button>
+        {mostraLista}
       </div>
     
   );
