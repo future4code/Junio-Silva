@@ -29,6 +29,7 @@ class TelaCriarPlaylists extends React.Component {
     .then((response) => {
       this.setState({textoInput:""})
       alert("Playlist Criada com sucesso!")
+
     })
     .catch((error) => {alert(error)})
   }
