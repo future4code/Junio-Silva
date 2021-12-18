@@ -1,136 +1,109 @@
 import React from 'react';
 import axios from 'axios'
-import styled from 'styled-components'
-import InputsControlados from './InputsControlados'
+// import styled from 'styled-components'
+import DetalhesPlay from './DetalhesPlay';
+import AdicionaMusica from './AdicionaMusica';
 
 class TelaListaDePlaylists extends React.Component {
 
-  state = {
-    playlists: [],
-    addMusica: '',
-    idPlaylist: '',
-    nomeMusica: '',
-    nomeArtista: '',
-    urlMusica: '',
-  }
+    state = {
+        idPlaylist: '',
+        mostraLista: false,
+        mostraDetalhe: false,
+        infoplaylist: []
+        // criar um estado para receber o valor da requisição.
+    }
 
-  componentDidMount() {
-    this.pegaPlaylists()
-    console.log("componente carregou")
-  }
+       deletePlay = (id) => {
 
-
-
-  pegaPlaylists = () => {
-    let URL = "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists"
-    let autorizacao = {
-      headers: {
-        authorization: "Junio-Silva-Joy"
+        axios.delete(
+          `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${id}`,
+          {
+            headers:{
+              Authorization: "Junio-Silva-Joy"
+            }
+          }
+        )
+        .then(() => {
+          alert("Playlist apagado com sucesso!");
+          this.props.pegaPlaylists();
+        })
+        .catch((err) => {
+          console.log(err.message)
+        })
       }
+
+    addMusica = (id) => {
+      this.state.mostraLista 
+      ? this.setState({mostraLista:false})
+      : this.setState({mostraLista:true})
+      this.setState({idPlaylist:id})
+      console.log(this.state.mostraLista)
     }
-    axios.get(URL, autorizacao)
-      .then((response) => { this.setState({ playlists: response.data.result.list }) })
-      .catch((error) => { console.log(error) })
-  }
+    detalhesDaPlay = (id) => {
 
-
-
-  mudaMusicaInput = (event) => {
-    this.setState({ nomeMusica: event.target.value })
-
-  }
-  mudaArtistaInput = (event) => {
-    this.setState({ nomeArtista: event.target.value })
-    console.log(this.state.nomeArtista)
-  }
-  mudaUrlInput = (event) => {
-    this.setState({ urlMusica: event.target.value })
-    console.log(this.state.urlMusica)
-  }
-
-
-  AdicionaMusica = (id) => {
-    let URL = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${id}/tracks`
-
-    let body = {
-      name: this.state.nomeMusica,
-      artist: this.state.nomeArtista,
-      url: this.state.urlMusica
     }
-    let autorizacao = {
-      headers: {
-        Authorization: "Junio-Silva-Joy"
-      }
-    }
-    console.log(this.state.urlMusica)
-    console.log(this.state.nomeArtista)
-    console.log(this.state.urlMusica)
 
-    axios.post(URL, body, autorizacao)
-      .then((response) => {
-        // this.setState({nomeMusica:'', nomeArtista:'', urlMusica:''})
-        alert("Música adicionada com sucesso!")
-      })
-      .catch((error) => { console.log(error.data) })
-  }
+    getPlaylistinfo = (id) => {
+      
+      axios.get(
+      
 
-  deletePlay = (id) => {
-
-    axios.delete(
-      `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${id}`,
-      {
-        headers: {
-          Authorization: "Junio-Silva-Joy"
+        `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${id}/tracks/`,
+        {
+          headers:{
+            Authorization: "Junio-Silva-Joy"
+          }
         }
-      }
-    )
-      .then(() => {
-        alert("Playlist apagada com sucesso!");
-        this.pegaPlaylists();
+      )
+      .then((res) => {
+        this.state.mostraDetalhe
+        ? this.setState({mostraDetalhe:false})
+        : this.setState({mostraDetalhe:true})
+        
+        console.log(typeof res.data.result.tracks)
+        // this.setState({infoplaylist:res.data.result.tracks})
+          console.log("Stateinforplaylist:", this.state.infoplaylist, "typeof:", typeof this.state.infoplaylist)
       })
       .catch((err) => {
-        console.log(err.response.data)
+        console.log(err.message)
       })
-  }
-
-  render() {
-    let mudaCondicional = (id, nome) => {
-
-      if (this.state.addMusica === nome) {
-        this.setState({ idPlaylist: id, addMusica: "" })
-      } else {
-        this.setState({ idPlaylist: id, addMusica: nome })
-      }
     }
 
-    let playListsMap = this.state.playlists.map((playlist) => {
-      return <p key={playlist.id}> <strong> Nome:</strong> {playlist.name} <br /><button onClick={() => this.deletePlay(playlist.id)}>Deletar</button>
-        <button>Detalhes da Playlist</button>
-        <button onClick={() => mudaCondicional(playlist.id, playlist.name)}>Adicionar Musica</button>
+    render() {this.state.infoplaylist
+        
+    let mostraLista = <h1>Página de erro</h1> 
+    if(this.state.mostraLista){
+      mostraLista = <AdicionaMusica idPlaylist = {this.state.idPlaylist} />
+    }else{
+      mostraLista= ""
+    }
+    let mostraDetalhe = <h1>Página de erro</h1> 
+    if(this.state.mostraDetalhe){
+      mostraDetalhe = <DetalhesPlay stateDetalhes={this.state.infoplaylist} />
+      // passar o estado por props para renderizar dentro do componente
 
-      </p>
-    })
+    }else{
+      mostraDetalhe= <p>nada para mostrar</p>
+    }
 
-    return (
-      <div>
-        <div key={playListsMap.id}>
-          <h2>Quantidade de playlists: {playListsMap.length}</h2>
-          <p> {playListsMap} </p><hr />
-        </div>
-        {this.state.addMusica && <InputsControlados
-          addMusica ={this.state.addMusica}
-          nomeMusica={this.state.nomeMusica}
-          mudaMusicaInput={this.mudaMusicaInput}
-          nomeArtista={this.state.nomeArtista}
-          mudaArtistaInput={this.mudaArtistaInput}
-          urlMusica={this.state.urlMusica}
-          mudaUrlInput={this.mudaUrlInput}
-          AdicionaMusica={this.AdicionaMusica}
-          
-        />}
-      </div>
-    )
-  }
+        let playListsMap = this.props.playlists.map((playlist)=>{
+            return <p> <strong> Nome:</strong> {playlist.name} <br /> <button onClick={() => this.deletePlay(playlist.id)}>Deletar</button> 
+              <button onClick={() => this.getPlaylistinfo(playlist.id)}>Detalhes da Playlist</button> 
+              <button onClick={() => this.addMusica(playlist.id)}>Adicionar Música</button>
+             
+               </p>
+        })
+
+        return(
+
+            <div key={playListsMap.id}>
+                <h2>Quantidade de playlists: {playListsMap.length}</h2>
+                 <p> {playListsMap} </p>
+                 <div>{mostraLista}{mostraDetalhe}</div>
+            </div>
+        )
+    }
 
 }
-export default TelaListaDePlaylists
+export default  TelaListaDePlaylists

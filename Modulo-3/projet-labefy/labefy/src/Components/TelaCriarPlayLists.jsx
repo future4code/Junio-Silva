@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios'
-import styled from 'styled-components'
-import InputsControlados from './InputsControlados'
+// import styled from 'styled-components'
+// import AdicionaMusica from './AdicionaMusica'
 
 class TelaCriarPlaylists extends React.Component {
 
