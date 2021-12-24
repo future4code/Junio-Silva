@@ -13,15 +13,13 @@ class AdicionaMusica extends React.Component {
 
     mudaMusicaInput = (event) => {
         this.setState({nomeMusica: event.target.value})
-        console.log(this.state.nomeMusica)
+
     }
     mudaArtistaInput = (event) => {
         this.setState({nomeArtista: event.target.value})
-        console.log(this.state.nomeArtista)
     }
     mudaUrlInput = (event) => {
         this.setState({urlMusica: event.target.value})
-        console.log(this.state.urlMusica)
      }
 
 
@@ -52,11 +50,15 @@ class AdicionaMusica extends React.Component {
     return (
 
     <div>
-        <h3>Adiciona Musica à {}</h3>
+        <hr />
+        <h3>Adicionar musica à playlist selecionada:</h3>
         <div>
-            <input placeholder="Nome da Música" value={this.state.nomeMusica} onChange={this.mudaMusicaInput} />
-            <input placeholder="Nome do Artista" value={this.state.nomeArtista} onChange={this.mudaArtistaInput} />
-            <input placeholder="Link" value={this.state.urlMusica} onChange={this.mudaUrlInput} />
+            Nome da Música<br />
+            <input value={this.state.nomeMusica} onChange={this.mudaMusicaInput} /><br /><br />
+            Nome do Artista<br />
+            <input value={this.state.nomeArtista} onChange={this.mudaArtistaInput} /><br /><br />
+            Link da Musica<br />
+            <input value={this.state.urlMusica} onChange={this.mudaUrlInput} /><br /><br />
             <button onClick={this.adicionaMusica}>Adicionar</button>
         </div>
       </div>)

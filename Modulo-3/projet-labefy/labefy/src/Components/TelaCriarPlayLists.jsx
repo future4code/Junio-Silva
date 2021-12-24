@@ -39,7 +39,7 @@ class TelaCriarPlaylists extends React.Component {
 
 
      <div>
-        <h3>Criar Playlist</h3>
+        <h2>Criar Playlist</h2>
         <div>
             <input placeholder="Nome da Playlist" value={this.state.textoInput} onChange={this.mudaTextoInput} />
             <button onClick={this.CriarPlaylist}>Criar</button>

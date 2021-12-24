@@ -29,7 +29,6 @@ class TelaListaDePlaylists extends React.Component {
           this.props.pegaPlaylists();
         })
         .catch((err) => {
-          console.log(err.message)
         })
       }
 
@@ -38,10 +37,6 @@ class TelaListaDePlaylists extends React.Component {
       ? this.setState({mostraLista:false})
       : this.setState({mostraLista:true})
       this.setState({idPlaylist:id})
-      console.log(this.state.mostraLista)
-    }
-    detalhesDaPlay = (id) => {
-
     }
 
     getPlaylistinfo = (id) => {
@@ -61,16 +56,15 @@ class TelaListaDePlaylists extends React.Component {
         ? this.setState({mostraDetalhe:false})
         : this.setState({mostraDetalhe:true})
         
-        console.log(typeof res.data.result.tracks)
-        // this.setState({infoplaylist:res.data.result.tracks})
-          console.log("Stateinforplaylist:", this.state.infoplaylist, "typeof:", typeof this.state.infoplaylist)
+
+        this.setState({infoplaylist:res.data.result.tracks})
       })
       .catch((err) => {
-        console.log(err.message)
+        alert(err.message)
       })
     }
 
-    render() {this.state.infoplaylist
+    render() {
         
     let mostraLista = <h1>Página de erro</h1> 
     if(this.state.mostraLista){
@@ -81,24 +75,25 @@ class TelaListaDePlaylists extends React.Component {
     let mostraDetalhe = <h1>Página de erro</h1> 
     if(this.state.mostraDetalhe){
       mostraDetalhe = <DetalhesPlay stateDetalhes={this.state.infoplaylist} />
-      // passar o estado por props para renderizar dentro do componente
 
     }else{
-      mostraDetalhe= <p>nada para mostrar</p>
+      mostraDetalhe = <p></p>
     }
 
         let playListsMap = this.props.playlists.map((playlist)=>{
-            return <p> <strong> Nome:</strong> {playlist.name} <br /> <button onClick={() => this.deletePlay(playlist.id)}>Deletar</button> 
+            return  (
+              <div key={playlist.id}>
+             <strong> Nome:</strong> {playlist.name} <br /> 
+             <button onClick={() => this.deletePlay(playlist.id)}>Deletar</button> 
               <button onClick={() => this.getPlaylistinfo(playlist.id)}>Detalhes da Playlist</button> 
-              <button onClick={() => this.addMusica(playlist.id)}>Adicionar Música</button>
-             
-               </p>
+              <button onClick={() => this.addMusica(playlist.id)}>Adicionar Música</button><br /><br />
+               </div>)
         })
 
         return(
 
             <div key={playListsMap.id}>
-                <h2>Quantidade de playlists: {playListsMap.length}</h2>
+                <h2>Quantidade de Playlists salvas: {playListsMap.length}</h2>
                  <p> {playListsMap} </p>
                  <div>{mostraLista}{mostraDetalhe}</div>
             </div>

@@ -4,16 +4,22 @@ import React from 'react';
 
 class DetalhesPlay extends React.Component {
 
-  
 
+    detalhes = this.props.stateDetalhes
+    detalhesMapeados = this.detalhes.map((musica)=> {
+        return (
+            <div key={musica.id}>
+                <strong>Artista: </strong>{musica.artist}<br />
+                <strong>Musica:  </strong>{musica.name}<br />
+                <button>Deletar da Playlist</button><br /><br />
+            </div>)
+    }) 
     render() {
-
-        let detalhesmapeados = this.props.stateDetalhes
-        console.log(typeof detalhesmapeados)
     return (
 
-        <div>
-            <p>Olá {detalhesmapeados} </p>      
+        <div><hr />
+            <h2>Lista de musicas nesta playlist: {this.detalhesMapeados.length}</h2>
+            <p>{this.detalhesMapeados} </p>      
         </div>)
 }
 
