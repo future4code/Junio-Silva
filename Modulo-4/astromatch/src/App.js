@@ -1,19 +1,18 @@
 import React from 'react';
 import styled from 'styled-components'
-import MainContainer from './componentes/MainContainer'
+import MainScreen from './componentes/MainScreen'
 
 let Center = styled.div`
 display: flex;
-align-items: center;
 justify-content: center;
-margin-top: 3rem;
-
+align-items: center;  
+margin-top: 2em;
 `
 
 function App() {
   return (
     <Center>
-      <MainContainer />
+      <MainScreen />
     </Center>
   );
 }
