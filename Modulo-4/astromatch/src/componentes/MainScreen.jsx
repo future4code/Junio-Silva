@@ -16,7 +16,7 @@ margin: 0 10px;
 `
 
 let MainScreenStyle = styled.div`
-height: 35em;
+height: 37em;
 width: 25em;
 display: grid;
 grid-template-columns: 1fr;

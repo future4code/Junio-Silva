@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import MainScreen from './componentes/MainScreen'
+import SetAll from "./componentes/SetAllStyles"
 
 let Center = styled.div`
 display: flex;
@@ -12,6 +13,7 @@ margin-top: 2em;
 function App() {
   return (
     <Center>
+      <SetAll />
       <MainScreen />
     </Center>
   );
