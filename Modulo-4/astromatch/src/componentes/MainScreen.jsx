@@ -11,8 +11,13 @@ margin-left: 5em ;
 `
 
 let MatchListIcon = styled.img`
-height:80%;
-margin: 0 10px;
+height:60%;
+margin: 0px 15px;
+cursor:pointer;
+opacity: 80%;
+
+&:hover { height: 65%;
+opacity: 100%}
 `
 
 let MainScreenStyle = styled.div`
@@ -36,35 +41,30 @@ align-items: center;
 
 export default function MainScreen() {
 
-    const [currentScreen, setCurrentScreen] = useState(<ProfileCard/>) 
+    const [currentScreen, setCurrentScreen] = useState("list") 
 
 
-    // const screenOptions = () => {
-    //     if(currentScreen){
-    //          setCurrentScreen(<MatchesList/>)
-    //     }else{
-    //          setCurrentScreen(<ProfileCard/>)
-    //     }
-    // }
+    const screenOptions = () => {
+        if(currentScreen !== "profile" ){
+             return <MatchesList />
+        }else{
+             return <ProfileCard />
+        }
+    }
 
-    // const changeScreen = () => {
-    //     console.log("clicou")
-    //     // if (currentScreen == <ProfileCard />){
-    //     //     return setCurrentScreen(<MatchesList />)
-    //     // }else{
-    //     //     return setCurrentScreen(<ProfileCard />)
+    const changeScreen = () => {
+ 
+        currentScreen === 'profile' ? setCurrentScreen('list') : setCurrentScreen('profile')
 
-    //     return currentScreen ? setCurrentScreen(false) : setCurrentScreen(true)
-
-    // }
+    }
 
     return(
         <MainScreenStyle>
             <Header>
-                <LogoStyle src={logo}/>
-                <MatchListIcon src={matchList}/>
+                <LogoStyle src={logo} />
+                <MatchListIcon src={matchList} onClick={changeScreen}/>
             </Header>
-            {currentScreen}
+            {screenOptions()}
         </MainScreenStyle>
     )
 }

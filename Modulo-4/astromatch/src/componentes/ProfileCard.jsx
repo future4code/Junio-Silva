@@ -49,7 +49,7 @@ export default function ProfileCard() {
         }
     }
 
-    useEffect(getUser, [])
+    useEffect(()=>{getUser()}, [])
 
     const choosePerson = async () => {
 

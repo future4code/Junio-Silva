@@ -44,7 +44,7 @@ export default function MatchesList() {
         }
     }
 
-    useEffect(requestMatches, [])
+    useEffect(() => {requestMatches()}, [])
     
     let mappedList = list.map((match)=> {
         return(
