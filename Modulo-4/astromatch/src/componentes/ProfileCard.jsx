@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import styled from 'styled-components'
 import sim from "../assets/sim.png"
 import nao from "../assets/nao.png"
 import axios from "axios"
 
 let CardContainer = styled.div`
-width:95%;
-height: 99%;
-box-shadow: inset 0 0 10px 1px #DCDCDC;
+width:100%;
+height: 94.8%;
+box-shadow: inset 0 0 10px 1px #dbb8e4;
 display: flex;
 flex-direction: column;
 padding: 10px;
@@ -62,37 +62,36 @@ font-size: 16px
 
 `
 
-export default function ProfileCard() {
+export default function ProfileCard(props) {
 
-    const [user, setUser] = useState({})
 
     const getUser = async () => {
         let res = await axios.get("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/junior-joy/person")
 
         try {
-            setUser(res.data.profile)
+            props.setUser(res.data.profile)
         } catch (err) {
             console.log("Something went wrong!")
         }
     }
 
-    useEffect(()=>{getUser()}, [])
+    useEffect(() => { getUser() }, [])
 
     const choosePerson = async () => {
 
-        let URL = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/junio-silva-joy/choose-person"
-        let header = { headers: {"Content-Type": "application/json"}}
-        console.log(user.id)
+        let URL = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/junior-joy/choose-person"
+        let header = { headers: { "Content-Type": "application/json" } }
         let body = {
-            "id": `${user.id}`,
+            "id": `${props.user.id}`,
             "choice": true
         };
 
         let request = await axios.post(URL, body, header)
 
-        try{
-            console.log("it works", request.data)
-        }catch(err){
+        try {
+            console.log("request sent!")
+            getUser()
+        } catch (err) {
             console.log("Error!")
         }
     }
@@ -100,14 +99,14 @@ export default function ProfileCard() {
 
     return (
         <CardContainer>
-            <ProfilePhoto src={user.photo} />
+            <ProfilePhoto src={props.user.photo} />
             <Description>
-                <h2><strong>{user.name}</strong>, {user.age} </h2>
-                <p>{user.bio}</p>
+                <h2><strong>{props.user.name}</strong>, {props.user.age} </h2>
+                <p>{props.user.bio}</p>
             </Description>
             <YesOrNotIcons>
-                <ImageYes src={sim} />
-                <ImageNo src={nao} />
+                <ImageYes src={sim} onClick={choosePerson} />
+                <ImageNo src={nao} onClick={getUser} />
             </YesOrNotIcons>
         </CardContainer>
     )

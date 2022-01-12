@@ -1,4 +1,4 @@
-import React , { useState, useEffect } from "react";
+import React , { useState } from "react";
 import styled from 'styled-components'
 import logo from "../assets/logo.png"
 import matchList from "../assets/match.png"
@@ -7,12 +7,11 @@ import MatchesList from "./MatchesList"
 
 let LogoStyle = styled.img`
 height:100%;
-margin-left: 5em ;
 `
-
+178158809-kirfenbr
+178158809-kirfenbr
 let MatchListIcon = styled.img`
 height:60%;
-margin: 0px 15px;
 cursor:pointer;
 opacity: 75%;
 
@@ -22,13 +21,12 @@ opacity: 100%}
 &:active { opacity:30%;}
 `
 
-
 let MainScreenStyle = styled.div`
 height: 37em;
 width: 25em;
 display: grid;
 grid-template-columns: 1fr;
-grid-template-rows: 50px 1fr ;
+grid-template-rows: 65px 1fr ;
 border: 1px solid;
 border-radius: 5px;
 justify-items: center;
@@ -37,28 +35,25 @@ justify-items: center;
 let Header = styled.header`
 width:100%;
 display: flex;
-justify-content: space-between;
-align-items: center;
+justify-content: space-around;
+align-items: flex-end;
 `
 
 export default function MainScreen() {
 
     const [currentScreen, setCurrentScreen] = useState("profile") 
-
-
+    const [user, setUser] = useState({})
 
     const screenOptions = () => {
         if(currentScreen !== "profile" ){
-             return <MatchesList />
+             return <MatchesList user={user} setUser={setUser} />
         }else{
-             return <ProfileCard />
+             return <ProfileCard user={user} setUser={setUser} />
         }
     }
 
     const changeScreen = () => {
- 
         currentScreen === 'profile' ? setCurrentScreen('list') : setCurrentScreen('profile')
-
     }
 
     return(
