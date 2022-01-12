@@ -11,7 +11,7 @@ width:95%;
 height: 97%;
 box-shadow: inset 0 0 3px 1px #DCDCDC;
 overflow: auto;
-margin: 15px;
+margin-bottom: 15px;
 padding: 10px;
 `
 
@@ -28,9 +28,10 @@ let ImgCardMatchList = styled.img`
 height: 100%;
 width: 50px;
 margin-right: 1em;
+border-radius: 50%;
 `
 
-export default function MatchesList() {
+export default function MatchesList(props) {
 
     const [list, setList] = useState([])
 
@@ -44,7 +45,7 @@ export default function MatchesList() {
         }
     }
 
-    useEffect(() => {requestMatches()}, [])
+    useEffect(() => {requestMatches()}, [props.user])
     
     let mappedList = list.map((match)=> {
         return(

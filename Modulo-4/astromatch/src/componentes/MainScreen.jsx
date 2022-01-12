@@ -14,11 +14,14 @@ let MatchListIcon = styled.img`
 height:60%;
 margin: 0px 15px;
 cursor:pointer;
-opacity: 80%;
+opacity: 75%;
 
 &:hover { height: 65%;
 opacity: 100%}
+
+&:active { opacity:30%;}
 `
+
 
 let MainScreenStyle = styled.div`
 height: 37em;
@@ -29,7 +32,6 @@ grid-template-rows: 50px 1fr ;
 border: 1px solid;
 border-radius: 5px;
 justify-items: center;
-
 `
 
 let Header = styled.header`
@@ -41,7 +43,8 @@ align-items: center;
 
 export default function MainScreen() {
 
-    const [currentScreen, setCurrentScreen] = useState("list") 
+    const [currentScreen, setCurrentScreen] = useState("profile") 
+
 
 
     const screenOptions = () => {

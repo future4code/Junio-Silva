@@ -5,11 +5,14 @@ const GlobalStyles = createGlobalStyle`
 
 *{
     box-sizing: border-box;
+    scrollbar-width: thin;
+  scrollbar-color: blue orange;
 }
 
 
+
 p{
-    opacity: 0.7;
+    opacity: 0.8;
     line-height: 1.5;
     font-size: 20px;
 }
