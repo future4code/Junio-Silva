@@ -5,9 +5,13 @@ import SetAll from "./componentes/SetAllStyles"
 
 let Center = styled.div`
 display: flex;
+height: 100vh;
 justify-content: center;
-align-items: center;  
-margin-top: 2em;
+/* align-items: center;  */
+/* margin-top: 2em; */
+background-color:rgba(128, 128, 128, 0.3);
+padding-top: 5em
+
 `
 
 function App() {
@@ -16,7 +20,7 @@ function App() {
       <SetAll />
       <MainScreen />
     </Center>
-  );
+    );
 }
 
 export default App;

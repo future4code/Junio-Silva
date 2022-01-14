@@ -2,8 +2,6 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import styled from 'styled-components'
 
-
-
 let ListCard = styled.div`
 display:flex;
 flex-direction: column;
@@ -92,6 +90,7 @@ export default function MatchesList(props) {
     }
 
     return (
+        
         <>
             <ListCard>
                 <h3> {mappedList.length} matches</h3>

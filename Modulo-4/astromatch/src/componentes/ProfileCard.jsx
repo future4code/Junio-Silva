@@ -14,6 +14,8 @@ padding: 10px;
 position: relative;
 `
 let ProfilePhoto = styled.img`
+max-height: 440px;
+min-height: 440px;
 height: 440px;
 width: 100%;
 `
@@ -24,7 +26,7 @@ height: 3rem;
 
 &:hover { opacity: 100%;
     height: 3.1rem;}
-&:active { opacity:30%;}
+&:active { opacity:70%;}
 `
 let ImageYes = styled.img`
 opacity: 75%;
@@ -32,7 +34,7 @@ height: 3rem;
 
 &:hover { opacity: 100%;
     height: 3.1rem;}
-&:active { opacity:30%;}
+&:active { opacity:70%;}
 `
 
 let YesOrNotIcons = styled.div`
@@ -44,20 +46,23 @@ align-items: center;
 
 let Description = styled.div`
 position: absolute;
-height: 8rem;
+height: 8.0rem;
+width: 95%;
 z-index: 2;
-top: 310px;
-background-color: rgba(255, 255, 255, 0.);
+top: 323px;
+background-color: rgba(137, 110, 155, 0.6);
 line-height:3rem;
+border-radius: 5px;
 & > h2 {
-margin: 2px 15px;
+margin: 0 15px;
 color:white;
 }
+
 
 & > p {
 margin: 2px 15px;
 color:white;
-font-size: 16px
+font-size: 17px
 }
 
 `

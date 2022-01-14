@@ -6,14 +6,15 @@ import ProfileCard from "./ProfileCard"
 import MatchesList from "./MatchesList"
 
 let LogoStyle = styled.img`
-height:100%;
+height:70%;
+margin-left:4em;
 `
-178158809-kirfenbr
-178158809-kirfenbr
+
 let MatchListIcon = styled.img`
 height:60%;
 cursor:pointer;
 opacity: 75%;
+margin-right: 8px;
 
 &:hover { height: 65%;
 opacity: 100%}
@@ -35,10 +36,15 @@ justify-items: center;
 let Header = styled.header`
 width:100%;
 display: flex;
-justify-content: space-around;
-align-items: flex-end;
+justify-content: space-between;
+align-items: center;
 `
 
+const Div =styled.div`
+height: 60.5vh;
+background-color: #ffffff;
+`
+ 
 export default function MainScreen() {
 
     const [currentScreen, setCurrentScreen] = useState("profile") 
@@ -57,6 +63,7 @@ export default function MainScreen() {
     }
 
     return(
+        <Div>
         <MainScreenStyle>
             <Header>
                 <LogoStyle src={logo} />
@@ -64,5 +71,7 @@ export default function MainScreen() {
             </Header>
             {screenOptions()}
         </MainScreenStyle>
+        </Div>
+        
     )
 }
