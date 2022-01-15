@@ -56,7 +56,7 @@ export default function MatchesList(props) {
     const [list, setList] = useState([])
 
     const requestMatches = async () => {
-        let list = await axios.get("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/junior-joy/matches")
+        let list = await axios.get("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/juninho-j/matches")
 
         try {
             setList(list.data.matches)
@@ -76,7 +76,7 @@ export default function MatchesList(props) {
     })
 
     const clearList = async () => {
-        let URL = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/junior-joy/clear"
+        let URL = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/juninho-j/clear"
 
         let body = {
             "id": "PatusZf4mHH6UoZfYC8I"

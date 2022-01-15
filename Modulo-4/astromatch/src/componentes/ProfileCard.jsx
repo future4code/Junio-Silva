@@ -69,20 +69,21 @@ font-size: 14px
 
 export default function ProfileCard(props) {
     const getUser = async () => {
-        let res = await axios.get("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/junior-joy/person")
+        let res = await axios.get("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/juninho-j/person")
 
         try {
             props.setUser(res.data.profile)
-        } catch (err) {
-            console.log("Something went wrong!")
+        } catch (err) { 
+            console.log("Estado",props.user, "erro;", err ,"Something went wrong!")
         }
     }
+   
 
-  useEffect(() => { getUser() }, [])  
+useEffect(() => { getUser() }, [])  
 
     const choosePerson = async () => {
 
-        let URL = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/junior-joy/choose-person"
+        let URL = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/juninho-j/choose-person"
         let header = { headers: { "Content-Type": "application/json" } }
         let body = {
             "id": `${props.user.id}`,
