@@ -41,7 +41,7 @@ align-items: center;
 `
 
 const Div =styled.div`
-height: 60.5vh;
+max-height: 78.5vh;
 background-color: #ffffff;
 `
  

@@ -56,20 +56,18 @@ border-radius: 5px;
 & > h2 {
 margin: 0 15px;
 color:white;
-}
 
+}
 
 & > p {
 margin: 2px 15px;
 color:white;
-font-size: 17px
+font-size: 14px
 }
 
 `
 
 export default function ProfileCard(props) {
-
-
     const getUser = async () => {
         let res = await axios.get("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/junior-joy/person")
 
@@ -80,7 +78,7 @@ export default function ProfileCard(props) {
         }
     }
 
-    useEffect(() => { getUser() }, [])
+  useEffect(() => { getUser() }, [])  
 
     const choosePerson = async () => {
 
