@@ -1,21 +1,19 @@
 import React from "react";
 import styled from 'styled-components'
-import fundo from "../assets/fundo.jfif"
+import fundo from "../assets/fundo.jpg"
 import logoG from "../assets/logo-grande.png"
 
 
 const MainContainerStyled = styled.div`
-background-image: url(${fundo}) ;
-height: 100vh;
+height: 90vh;
 width: 100vw;
 display: flex;
 justify-content: space-around   ;
 align-items: center;
 position: relative;
 >img{
-   height: 40vh;
+   height: 50vh;
 }
-
 `
 
 const CardsContainer = styled.div`
@@ -23,7 +21,7 @@ text-align: center;
 margin: 10px;
 height: 80vh;
 width: 30vw;
-background-color: rgba(6, 43, 85, 0.6);
+background-color: rgba(255, 255, 255, 0.2);
 border-radius: 5%;
 >h3 {
    color: white;
@@ -35,7 +33,7 @@ border-radius: 5%;
     return (
     <MainContainerStyled>
       <CardsContainer>
-       <h3>O céu é o limite dos pássaros,<br /> 
+       <h3>O céu é o limite dos passaros,<br /> 
           nao o seu!</h3>
       </CardsContainer>
       <img src={logoG} />
