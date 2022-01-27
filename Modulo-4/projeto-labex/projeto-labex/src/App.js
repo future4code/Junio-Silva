@@ -2,10 +2,16 @@ import React from 'react';
 import styled from 'styled-components'
 import Home from './pages/Home'
 import GlobalStyles from './Components/GlobalStyles'
+import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import Header from "./Components/Header"
 import fundo from "./assets/fundo.jpg"
+import ApplicationForm from './pages/ApplicationForm' 
+import CreateTrip from './pages/CreateTrip'  
+import LoginPage from './pages/LoginPage' 
+import TripDetails from './pages/TripDetails' 
 import TripList from  './pages/TripList';
-import ApplicationForm from './pages/ApplicationForm';
+import AdminHome from './pages/AdminHome';
+import ErrorPage from './pages/ErrorPage';
 
 const MainContainer = styled.div`
 background-image: url(${fundo}) ;
@@ -16,26 +22,33 @@ width: 100vw;
 `
 
 
-
-// const GlobalStyle = createGlobalStyle`
-
-// @import url('https://fonts.googleapis.com/css2?family=Coda&family=Mochiy+Pop+P+One&display=swap');
-
-// font-family: 'Mochiy Pop P One';
-
-// *{
-// font-family: 'Coda';
-// font-size: 20px;
-// }`
-
 function App() {
   return (
-    <MainContainer>
-      <Header />
+    <BrowserRouter>
+      <MainContainer>
       <GlobalStyles />
-      <ApplicationForm />
-      {/* <TripList /> */}
-    </MainContainer>
+      <Header />
+        <Switch>
+          
+          <Route exact path={"/"}>
+            <Home  />
+          </Route>
+
+          <Route>
+            <TripList exact path={"/triplist"} />
+          </Route>
+
+          <Route>
+            <ErrorPage />
+          </Route>
+
+          <Route>
+            <AdminHome exact path={"/adminhome"} />
+          </Route>
+        
+        </Switch>
+      </MainContainer>
+    </BrowserRouter>
   );
 }
 

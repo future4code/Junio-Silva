@@ -2,6 +2,7 @@ import React from "react";
 import styled from 'styled-components'
 import fundo from "../assets/fundo.jpg"
 import logoG from "../assets/logo-grande.png"
+import {useHistory} from 'react-router-dom'
 
 
 const MainContainerStyled = styled.div`
@@ -29,16 +30,26 @@ border-radius: 5%;
 }
 `
 
+
+
  const Home = () => { 
+
+   const history = useHistory()
+
+   const goToListPage = () =>{
+      history.push("/triplist")
+   }
+
     return (
     <MainContainerStyled>
       <CardsContainer>
        <h3>O céu é o limite dos passaros,<br /> 
           nao o seu!</h3>
+          <button onClick={goToListPage}> Ver viagens </button>
       </CardsContainer>
       <img src={logoG} />
       <CardsContainer>
-
+      < button> Fazer Login </button>
       </CardsContainer>
 
     </MainContainerStyled>
