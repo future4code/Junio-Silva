@@ -2,14 +2,14 @@ import React from 'react';
 import styled from 'styled-components'
 import Home from './pages/Home'
 import GlobalStyles from './Components/GlobalStyles'
-import {BrowserRouter, Switch, Route} from 'react-router-dom'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Header from "./Components/Header"
 import fundo from "./assets/fundo.jpg"
-import ApplicationForm from './pages/ApplicationForm' 
-import CreateTrip from './pages/CreateTrip'  
-import LoginPage from './pages/LoginPage' 
-import TripDetails from './pages/TripDetails' 
-import TripList from  './pages/TripList';
+import ApplicationForm from './pages/ApplicationForm'
+import CreateTrip from './pages/CreateTrip'
+import LoginPage from './pages/LoginPage'
+import TripDetails from './pages/TripDetails'
+import TripList from './pages/TripList';
 import AdminHome from './pages/AdminHome';
 import ErrorPage from './pages/ErrorPage';
 
@@ -24,31 +24,36 @@ width: 100vw;
 
 function App() {
   return (
-    <BrowserRouter>
-      <MainContainer>
+
+    <MainContainer>
       <GlobalStyles />
       <Header />
+      <BrowserRouter>
         <Switch>
-          
           <Route exact path={"/"}>
-            <Home  />
+            <Home />
           </Route>
 
-          <Route>
-            <TripList exact path={"/triplist"} />
+          <Route exact path={"/triplist"}>
+            <TripList />
+          </Route>
+
+          <Route exact path={"/admin"}>
+            <AdminHome />
+          </Route>
+          
+          <Route exact path={"/applicationform"}>
+            <ApplicationForm />
           </Route>
 
           <Route>
             <ErrorPage />
           </Route>
 
-          <Route>
-            <AdminHome exact path={"/adminhome"} />
-          </Route>
-        
         </Switch>
-      </MainContainer>
-    </BrowserRouter>
+      </BrowserRouter>
+    </MainContainer>
+
   );
 }
 

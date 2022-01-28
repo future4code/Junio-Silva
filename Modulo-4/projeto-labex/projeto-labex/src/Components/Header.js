@@ -7,8 +7,9 @@ height: 80%;
 `
 
 const SocialMediaImages = styled.img`
-height: 35px;
+height: 30px;
 opacity: 70%;
+margin: 5px 0;
 cursor: pointer;
 
 &:hover { 
@@ -25,12 +26,14 @@ display: flex;
 flex-direction: column;
 justify-content:center;
 align-items: center;
-height: 80px;
+height: 75px;
 width: 250px;
 >p{ text-align: center;
-    font-size: 14px;
+    font-size: 13px;
+    line-height: 15px;
 }
 >div{
+    height: 5em;
     display:flex;
     justify-content: space-around;
     align-items: flex-end;

@@ -1,7 +1,11 @@
 import React from 'react';
 import styled from 'styled-components'
 import axios from 'axios';
+import { useHistory } from 'react-router-dom'
 import { UseTripRequest } from '../Hooks/UseTripRequest';
+import { ChakraProvider } from '@chakra-ui/react';
+import { Button , ButtonGroup } from '@chakra-ui/react'
+import { BsArrowRight, BsArrowLeft } from 'react-icons/bs';
 
 
 const StyledContainer = styled.div`
@@ -21,6 +25,8 @@ flex-direction: column;
 justify-content:space-around;
 align-items: center;
 >h1{
+    font-size: 40px;
+    font-weight: 700;
     color: white;
     text-align:center;
 }
@@ -76,21 +82,33 @@ const TripList = () => {
         </TripContainer>)
     })
 
+
+        const history = useHistory()
+
+        const SignToTrip = () => {
+            history.push("/applicationform")
+            console.log("clicou sign to trip")
+         }
+
     return (
         <StyledContainer>
+            <ChakraProvider>
             <ApplyCard>
-
                 <h1> A LabeX te proporciona as viagens mais seguras da galáxia. </h1>
                 <img src="https://media0.giphy.com/media/j5zUrmQ4VgJbV3pzPU/giphy.gif?cid=ecf05e47gffl65ltptctsjg9fv1c3xv6iul66gcabctq9s66&rid=giphy.gif&ct=g" />
-                <button>Aplicar para Viagem</button>
-              
-"               
+                <Button 
+                onClick={SignToTrip}
+                rightIcon={<BsArrowRight/>}  
+                colorScheme='purple' 
+                variant='solid'> Inscrever para viagem </Button>
+                        
             </ApplyCard>
 
             <TripsCard>
                 <h2> Temos {MappedTrips.length} viagens com inscrições abertas.</h2>
                 {MappedTrips}
             </TripsCard>
+            </ChakraProvider>
         </StyledContainer>
     )
 }

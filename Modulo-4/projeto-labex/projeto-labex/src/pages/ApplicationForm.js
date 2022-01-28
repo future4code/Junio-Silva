@@ -1,83 +1,104 @@
 import React from 'react';
 import styled from 'styled-components'
 import axios from 'axios';
+import { Input, Select, Button } from '@chakra-ui/react'
+import { ChakraProvider } from '@chakra-ui/react';
+import { UseTripRequest } from '../Hooks/UseTripRequest'
 
 const StyledContainer = styled.div`
-height: 85vh;
-width: 100vw;
-display: flex;
+    height: 85vh;
+    width: 100vw;
+    display: flex;
 
-justify-content: space-around   ;
-align-items: center;
->*{
-    color: white
-}`
+    justify-content: space-around   ;
+    align-items: center;
+`
 
 const FormContainer = styled.div`
-background-color: rgba(0 ,0 ,0 , 0.7);
-height: 70vh;
-width: 35vw;
-display: flex;
-justify-content: center;
-flex-direction: column;
-align-items: center;
-border-radius: 8px;
-border: 1px rgba(255, 255, 255, 0.8)solid;
+    background-color: rgba(0 ,0 ,0 , 0.7);
+    height: 75vh;
+    width: 45vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+    border: 1px rgba(255, 255, 255, 0.8)solid;
+
 >div {
-justify-content: center;
-margin: 12px;
+    color: black;
+    width: 80%;
+    height: 10vh;
+    justify-content: center;
+    >label {color: white;}
 }
->h2{margin-bottom: 2.5em;}
+
+input, select { 
+    padding-left: 10px
+}
+
+>h2{
+    font-weight: 700;
+    margin: .5em 0;
+    font-size:35px;
+    color: white;
+}
 `
 
-const InputEstilizado = styled.input`
-padding: .6em;
-width: 30em;
-margin-top: 5px;
+const ContainerBotao = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: .2  em;
+    justify-content: center;
 `
-const SelectEstilizado = styled.select`
-padding: .6em;
-width: 31.7em;
-margin-top: 5px;
->option {
-    padding: .7em;
-    width: 30em;
-}
-`
+
+
 
 const ApplicationForm = () => {
+
+    const lista = UseTripRequest("https://us-central1-labenu-apis.cloudfunctions.net/labeX/:aluno/trips", [])
+
+const selectViagens = lista.map((viagem) =>{
+    return(
+        <option>{viagem.name}</option>
+    )
+})
+
     return (
-        <StyledContainer>
+
+        <ChakraProvider>
+            <StyledContainer>
 
                 <FormContainer>
                     <h2>Cadastro para viagem</h2>
                     <div>
                         <label>Escolha uma viagem</label><br />
-                        <SelectEstilizado>
-                            <option selected disabled>Selecione</option>
-
-                        </SelectEstilizado>
+                        <Select bg="white"  placeholder="Selecione">
+                        {selectViagens}
+                        </Select>
+                        
                     </div>
 
                     <div>
                         <label>Idade</label><br />
-                        <InputEstilizado />
+                        <Input bg="white" placeholder='Idade' />
                     </div>
 
                     <div>
                         <label>Texto de Candidatura</label><br />
-                        <InputEstilizado />
+                        <Input  bg="white" placeholder='digite seu texto' />
                     </div>
 
                     <div>
                         <label>Profissão</label><br />
-                        <InputEstilizado />
+                        <Input bg="white" placeholder='Profissão' />
                     </div>
 
                     <div>
                         <label>Escolha um país</label><br />
-                        <SelectEstilizado>
-                            <option selected disabled>Selecione</option>
+                        <Select bg="white" placeholder="Selecione">
                             <option value="Brasil">Brasil</option>
                             <option value="Afeganistão">Afeganistão</option>
                             <option value="África do Sul">África do Sul</option>
@@ -328,11 +349,18 @@ const ApplicationForm = () => {
                             <option value="Wallis e Futuna">Wallis e Futuna</option>
                             <option value="Zimbabwe">Zimbabwe</option>
                             <option value="Zâmbia">Zâmbia</option>
-                        </SelectEstilizado>
+                        </Select>
+
                     </div>
-                    <button> Enviar </button>
+                    <ContainerBotao>
+                        <Button                   
+                        colorScheme='purple' 
+                        variant='solid'> Enviar </Button>
+                    </ContainerBotao>
+
                 </FormContainer>
-        </StyledContainer>
+            </StyledContainer>
+        </ChakraProvider>
     )
 }
 
