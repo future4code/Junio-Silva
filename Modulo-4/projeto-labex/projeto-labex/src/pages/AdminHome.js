@@ -3,9 +3,10 @@ import styled from 'styled-components'
 import axios from 'axios';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Button } from '@chakra-ui/react'
-import { UseTripRequest } from '../Hooks/UseTripRequest'
+import { UseTripRequest } from '../hooks/UseTripRequest'
 import { IconButton } from '@chakra-ui/react'
 import {BsTrashFill} from 'react-icons/bs';
+import { useHistory } from 'react-router-dom';
 
 const StyledContainer = styled.div`
     height: 90vh;
@@ -78,6 +79,18 @@ const MapViagensContainer = styled.div`
 
 const AdminHome = () => {
 
+    const history = useHistory()
+
+    const goToCreateTrip = () => {
+       history.push("/createtrip")
+       console.log("clicou createtrip")
+    }
+
+    const goBack = () => {
+        history.goBack()
+        console.log("clicou home")
+     }
+
     const list = UseTripRequest("https://us-central1-labenu-apis.cloudfunctions.net/labeX/:aluno/trips", [])
     const MappedTrips = list.map(trip => {
         return (
@@ -109,11 +122,13 @@ const AdminHome = () => {
                     <h1> Painel Administrativo </h1>
                     <ButtonsContainer>
                         <Button
+                            onClick={goBack}
                             colorScheme='purple'
                             variant='solid'> Voltar
                         </Button>
 
                         <Button
+                            onClick={goToCreateTrip}
                             colorScheme='purple'
                             variant='solid'> Criar Viagem
                         </Button>

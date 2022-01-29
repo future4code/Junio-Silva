@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components'
 import axios from 'axios';
+import {BASE_URL} from '../constants/constants'
 
 const StyledContainer = styled.div`
 height: 85vh;
@@ -37,6 +38,37 @@ margin-top: 5px;
 
 
 const LoginPage = () => {
+
+    const [email, setEmail] =  useState("")
+    const [password, setPassword] = useState("")
+
+    const handleEmail =  ({target}) => {
+        setEmail(target.value)
+        console.log("email",email)
+    }
+
+    const handlePassword =  ({target}) => {
+        setPassword(target.value)
+        console.log("senha",password)
+    }
+
+    const onSubmitLogin = () =>{
+        axios.post(`${BASE_URL}/login`, {
+            email,
+            password
+        }).then(({data})=>{
+            localStorage.setItem("token", data.token )
+            console.log(data)
+            setEmail("")
+            setPassword("")
+
+        }).catch((res)=>{
+            console.log("erro", res)
+        })
+    }
+
+    console.log(`${BASE_URL}/LOGIN`)
+
     return (
         <StyledContainer>
 
@@ -45,15 +77,15 @@ const LoginPage = () => {
                     <label>Para ter acesso administrativo</label><br />
                     <div>
                         <label>E-mail</label><br />
-                        <InputEstilizado />
+                        <InputEstilizado value={email} onChange={handleEmail} />
                     </div>
 
                     <div>
                         <label>Senha</label><br />
-                        <InputEstilizado />
+                        <InputEstilizado value={password} onChange={handlePassword} />
                     </div>
 
-                    <button> Entrar </button>
+                    <button onClick={onSubmitLogin}> Entrar </button>
             </FormContainer>
         </StyledContainer>
     )

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components'
 import axios from 'axios';
 import { Input, Select, Button } from '@chakra-ui/react'
 import { ChakraProvider } from '@chakra-ui/react';
-import { UseTripRequest } from '../Hooks/UseTripRequest'
+import { UseTripRequest } from '../hooks/UseTripRequest'
+
 
 const StyledContainer = styled.div`
     height: 85vh;
@@ -54,15 +55,38 @@ const ContainerBotao = styled.div`
     justify-content: center;
 `
 
-
-
 const ApplicationForm = () => {
+
+    const [name, setName] = useState("") 
+    const [age,setAge]  = useState("") 
+    const [idTrip, setTrip] = useState("") 
+    const [text, setText] = useState("") 
+    const [profession, setProfession] = useState("") 
+
+    const handleName =(event) =>{
+        setName(event.target.value)
+    }
+    const handleAge =(event) =>{
+        setAge(event.target.value)
+    }
+    const handleTrip =(event) =>{
+        setTrip(event.target.value)
+        console.log(idTrip)
+    }
+    const handleText =(event) =>{
+        setText(event.target.value)
+
+    }
+    const handleProfession =(event) =>{
+        setProfession(event.target.value)
+    }
+
 
     const lista = UseTripRequest("https://us-central1-labenu-apis.cloudfunctions.net/labeX/:aluno/trips", [])
 
-const selectViagens = lista.map((viagem) =>{
+const selectViagens = lista.map((viagem, index) =>{
     return(
-        <option>{viagem.name}</option>
+        <option key={index}>{viagem.name}</option>
     )
 })
 
@@ -70,30 +94,53 @@ const selectViagens = lista.map((viagem) =>{
 
         <ChakraProvider>
             <StyledContainer>
-
                 <FormContainer>
                     <h2>Cadastro para viagem</h2>
                     <div>
-                        <label>Escolha uma viagem</label><br />
-                        <Select bg="white"  placeholder="Selecione">
+                        <label>Escolha uma viagem</label><br /> 
+                        <Select value={idTrip} onChange={handleProfession} bg="white"  placeholder="Selecione">
                         {selectViagens}
                         </Select>
-                        
+                    </div>
+
+                    <div>
+                        <label>Nome</label><br />
+                        <Input 
+                        value={name}  
+                        onChange={handleName} 
+                        bg="white" 
+                        placeholder='Idade' 
+                        />
                     </div>
 
                     <div>
                         <label>Idade</label><br />
-                        <Input bg="white" placeholder='Idade' />
+                        <Input 
+                        value={age}  
+                        onChange={handleAge} 
+                        bg="white" 
+                        placeholder='Idade' 
+                         />
                     </div>
 
                     <div>
                         <label>Texto de Candidatura</label><br />
-                        <Input  bg="white" placeholder='digite seu texto' />
+                        <Input 
+                        value={text}  
+                        onChange={handleText} 
+                        bg="white" 
+                        placeholder='digite seu texto' 
+                        />
                     </div>
 
                     <div>
                         <label>Profissão</label><br />
-                        <Input bg="white" placeholder='Profissão' />
+                        <Input  
+                        value={profession}   
+                        onChange={handleProfession}
+                        bg="white" 
+                        placeholder='Profissão' 
+                        />
                     </div>
 
                     <div>

@@ -1,9 +1,9 @@
-import React from 'react';
+
 import styled from 'styled-components'
 import Home from './pages/Home'
-import GlobalStyles from './Components/GlobalStyles'
+import GlobalStyles from './components/GlobalStyles'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import Header from "./Components/Header"
+import Header from "./components/Header"
 import fundo from "./assets/fundo.jpg"
 import ApplicationForm from './pages/ApplicationForm'
 import CreateTrip from './pages/CreateTrip'
@@ -23,6 +23,7 @@ width: 100vw;
 
 
 function App() {
+  
   return (
 
     <MainContainer>
@@ -38,12 +39,24 @@ function App() {
             <TripList />
           </Route>
 
+          <Route exact path={"/triplist/:id"}>
+            <TripList />
+          </Route>
+
           <Route exact path={"/admin"}>
             <AdminHome />
           </Route>
           
           <Route exact path={"/applicationform"}>
             <ApplicationForm />
+          </Route>
+
+          <Route exact path={"/createtrip"}>
+            <CreateTrip />
+          </Route>
+
+          <Route exact path={"/loginpage"}>
+            <LoginPage />
           </Route>
 
           <Route>

@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components'
 import axios from 'axios';
-import { useHistory } from 'react-router-dom'
-import { UseTripRequest } from '../Hooks/UseTripRequest';
+import { useHistory, useParams } from 'react-router-dom'
+import { UseTripRequest } from '../hooks/UseTripRequest';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Button , ButtonGroup } from '@chakra-ui/react'
 import { BsArrowRight, BsArrowLeft } from 'react-icons/bs';
+
 
 
 const StyledContainer = styled.div`
@@ -70,10 +71,19 @@ box-shadow:         inset 0px 0px 4px 2px rgba(0,0,0, 0.5);
 const TripList = () => {
 
     const listOfTrips  = UseTripRequest("https://us-central1-labenu-apis.cloudfunctions.net/labeX/:aluno/trips", [])
-    
+    const params = useParams()
+    const history = useHistory()
+
+    const SignToTrip = () => {
+        history.push("/applicationform")
+        console.log("clicou sign to trip")
+     }
+
     const MappedTrips = listOfTrips.map( trip => {
         return(
-        <TripContainer key={trip.id}>
+        <TripContainer key={trip.id} onClick={()=> {
+            history.push(trip.id)
+        }}>
             <p> <strong>Nome:</strong> {trip.name} </p>
             <p> <strong>Data:</strong> {trip.date} </p>
             <p><strong>Planeta:</strong> {trip.planet}</p>
@@ -83,12 +93,6 @@ const TripList = () => {
     })
 
 
-        const history = useHistory()
-
-        const SignToTrip = () => {
-            history.push("/applicationform")
-            console.log("clicou sign to trip")
-         }
 
     return (
         <StyledContainer>

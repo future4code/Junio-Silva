@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components'
 import axios from 'axios';
+import { UseTripRequest } from '../hooks/UseTripRequest';
+
+const lista = UseTripRequest();
 
 
 const StyledContainer = styled.div`
@@ -13,7 +16,8 @@ align-items: center;`
 const TripDetails = () => {
     return (
         <StyledContainer>
-            testando trip details...
+
+
         </StyledContainer>
     )
 }

@@ -55,6 +55,7 @@ const Home = () => {
       console.log("clicou home")
    }
 
+   
    const goToAdminPage = () => {
       history.push("/admin")
       console.log("clicou adm")
