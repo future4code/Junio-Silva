@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import axios from 'axios';
 import { UseTripRequest } from '../hooks/UseTripRequest';
 
-const lista = UseTripRequest();
 
 
 const StyledContainer = styled.div`
@@ -14,6 +13,9 @@ justify-content: space-around   ;
 align-items: center;`
 
 const TripDetails = () => {
+
+    const lista = UseTripRequest();
+
     return (
         <StyledContainer>
 

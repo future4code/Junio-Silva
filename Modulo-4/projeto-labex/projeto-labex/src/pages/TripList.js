@@ -1,11 +1,8 @@
 import React from 'react';
 import styled from 'styled-components'
-import axios from 'axios';
 import { useHistory, useParams } from 'react-router-dom'
 import { UseTripRequest } from '../hooks/UseTripRequest';
 import { ChakraProvider } from '@chakra-ui/react';
-import { Button , ButtonGroup } from '@chakra-ui/react'
-import { BsArrowRight, BsArrowLeft } from 'react-icons/bs';
 
 
 
@@ -28,6 +25,12 @@ align-items: center;
 >h1{
     font-size: 40px;
     font-weight: 700;
+    color: rgb(235,210,255);
+    text-align:center;
+}
+>h3{
+    font-size: 25px;
+    font-weight: 400;
     color: white;
     text-align:center;
 }
@@ -82,7 +85,7 @@ const TripList = () => {
     const MappedTrips = listOfTrips.map( trip => {
         return(
         <TripContainer key={trip.id} onClick={()=> {
-            history.push(trip.id)
+            history.push(`applicationform/${trip.id}/${trip.name}`)
         }}>
             <p> <strong>Nome:</strong> {trip.name} </p>
             <p> <strong>Data:</strong> {trip.date} </p>
@@ -93,23 +96,18 @@ const TripList = () => {
     })
 
 
-
     return (
         <StyledContainer>
             <ChakraProvider>
             <ApplyCard>
                 <h1> A LabeX te proporciona as viagens mais seguras da galáxia. </h1>
                 <img src="https://media0.giphy.com/media/j5zUrmQ4VgJbV3pzPU/giphy.gif?cid=ecf05e47gffl65ltptctsjg9fv1c3xv6iul66gcabctq9s66&rid=giphy.gif&ct=g" />
-                <Button 
-                onClick={SignToTrip}
-                rightIcon={<BsArrowRight/>}  
-                colorScheme='purple' 
-                variant='solid'> Inscrever para viagem </Button>
+<h3>NÃO PERCA TEMPO, <br/>Clique na viagem desejada para se inscrever! </h3>
                         
             </ApplyCard>
 
             <TripsCard>
-                <h2> Temos {MappedTrips.length} viagens com inscrições abertas.</h2>
+                <h2> Temos {MappedTrips.length} viagens disponíveis, clique na opção desejada.</h2>
                 {MappedTrips}
             </TripsCard>
             </ChakraProvider>

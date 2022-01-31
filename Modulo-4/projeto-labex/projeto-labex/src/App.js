@@ -12,6 +12,7 @@ import TripDetails from './pages/TripDetails'
 import TripList from './pages/TripList';
 import AdminHome from './pages/AdminHome';
 import ErrorPage from './pages/ErrorPage';
+import { ChakraProvider } from '@chakra-ui/react'
 
 const MainContainer = styled.div`
 background-image: url(${fundo}) ;
@@ -25,7 +26,7 @@ width: 100vw;
 function App() {
   
   return (
-
+    <ChakraProvider>
     <MainContainer>
       <GlobalStyles />
       <Header />
@@ -39,7 +40,7 @@ function App() {
             <TripList />
           </Route>
 
-          <Route exact path={"/triplist/:id"}>
+          <Route exact path={"/triplist"}>
             <TripList />
           </Route>
 
@@ -47,7 +48,7 @@ function App() {
             <AdminHome />
           </Route>
           
-          <Route exact path={"/applicationform"}>
+          <Route exact path={"/applicationform/:id/:name"}>
             <ApplicationForm />
           </Route>
 
@@ -66,6 +67,7 @@ function App() {
         </Switch>
       </BrowserRouter>
     </MainContainer>
+    </ChakraProvider>
 
   );
 }
