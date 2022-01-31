@@ -69,10 +69,10 @@ const ApplicationForm = () => {
         applicationText: ""
     })
 
-    const onSubmitClick = (event) => {
-        event.preventDefault()
-        console.log("clicou", form)
-    }
+    // const onSubmitClick = (event) => {
+    //     event.preventDefault()
+    //     console.log("clicou", form)
+    // }
 
     const formHandle = ({ target }) => {
         setForm({ ...form, [target.name]: target.value })
@@ -85,6 +85,14 @@ const ApplicationForm = () => {
         axios.post(`${BASE_URL}/trips/${params.id}/apply`, form, )
             .then(({ data }) => { alert('Sua inscrição foi efetuada com sucesso!') })
             .catch((err) => { console.log("erro:", err) })
+
+            setForm({
+                name: "",
+                age: "",
+                profession: "",
+                country: "",
+                applicationText: ""
+            })
     }
 
     console.log(form)
