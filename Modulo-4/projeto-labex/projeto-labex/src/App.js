@@ -60,6 +60,10 @@ function App() {
             <LoginPage />
           </Route>
 
+          <Route exact path={"/tripdetails/:id"} >
+            <TripDetails/>
+          </Route>
+
           <Route>
             <ErrorPage />
           </Route>

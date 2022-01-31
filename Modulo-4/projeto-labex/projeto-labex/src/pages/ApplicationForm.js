@@ -82,10 +82,7 @@ const ApplicationForm = () => {
     const sendApplication = () => {
         console.log(form)
 
-        axios.post(`${BASE_URL}/trips/${params.id}/apply`, form, {
-            headers: {
-                "Content-Type": "application/json"
-            }})
+        axios.post(`${BASE_URL}/trips/${params.id}/apply`, form, )
             .then(({ data }) => { alert('Sua inscrição foi efetuada com sucesso!') })
             .catch((err) => { console.log("erro:", err) })
     }

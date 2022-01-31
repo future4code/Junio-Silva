@@ -6,7 +6,8 @@ import { Button } from '@chakra-ui/react'
 import { UseTripRequest } from '../hooks/UseTripRequest'
 import { IconButton } from '@chakra-ui/react'
 import {BsTrashFill} from 'react-icons/bs';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
+import {BASE_URL} from '../constants/constants'
 
 const StyledContainer = styled.div`
     height: 90vh;
@@ -77,8 +78,10 @@ const MapViagensContainer = styled.div`
     overflow: auto;
 `
 
+
 const AdminHome = () => {
 
+    const {id} = useParams()
     const history = useHistory()
 
     const goToCreateTrip = () => {
@@ -86,15 +89,23 @@ const AdminHome = () => {
        console.log("clicou createtrip")
     }
 
+    const deleteTrip = (id) => {
+        axios.delete(`${BASE_URL}/trips/${id}`)
+    }
+
     const goBack = () => {
         history.goBack()
         console.log("clicou home")
      }
 
-    const list = UseTripRequest("https://us-central1-labenu-apis.cloudfunctions.net/labeX/:aluno/trips", [])
+    const list = UseTripRequest(`${BASE_URL}/trips`, [])
     const MappedTrips = list.map(trip => {
         return (
-            <TripContainer key={trip.id}>
+            <TripContainer 
+            onClick={() =>{
+                history.push(`/tripdetails/${trip.id}`)
+            }}
+            key={trip.id}>
                 <div>
                     <p> <strong>Nome:</strong> {trip.name} </p>
                     <p> <strong>Data:</strong> {trip.date} </p>

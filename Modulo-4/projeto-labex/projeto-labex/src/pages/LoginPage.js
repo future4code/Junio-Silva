@@ -4,6 +4,11 @@ import axios from 'axios';
 import {BASE_URL} from '../constants/constants'
 import { Button, ButtonGroup } from '@chakra-ui/react'
 
+    // e-mail e senha
+	// "email": "juniorjoy@labex.com.br",
+	// "password": "123456"
+
+
 const StyledContainer = styled.div`
 height: 85vh;
 width: 100vw;
