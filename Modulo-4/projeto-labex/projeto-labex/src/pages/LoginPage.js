@@ -58,10 +58,10 @@ const LoginPage = () => {
             "password": formLogin.password
         }).then(({data})=>{
             localStorage.setItem("token", data.token )
-            console.log("deu certo",data)
+            alert("Login Efetuado com sucesso!")
 
         }).catch((res)=>{
-            console.log("erro", res)
+            alert("erro", res)
         })
     }
 

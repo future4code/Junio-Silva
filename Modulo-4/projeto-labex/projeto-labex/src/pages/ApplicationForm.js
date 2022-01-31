@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components'
 import axios from 'axios';
 import { Input, Select, Button, ButtonGroup } from '@chakra-ui/react'
-import { ChakraProvider } from '@chakra-ui/react';
-import { UseTripRequest } from '../hooks/UseTripRequest'
 import { useParams } from 'react-router-dom'
 import { BASE_URL } from '../constants/constants';
 
@@ -79,23 +77,17 @@ const ApplicationForm = () => {
 
     }
 
-    const sendApplication = () => {
-        console.log(form)
+    const sendApplication = (event) => {
+        event.preventDefault()
 
-        axios.post(`${BASE_URL}/trips/${params.id}/apply`, form, )
+        axios.post(`${BASE_URL}/trips/${params.id}/apply`, form,)
             .then(({ data }) => { alert('Sua inscrição foi efetuada com sucesso!') })
-            .catch((err) => { console.log("erro:", err) })
+            .catch((err) => { alert("inscrição nao efetuada!", err) })
 
-            setForm({
-                name: "",
-                age: "",
-                profession: "",
-                country: "",
-                applicationText: ""
-            })
+
     }
 
-    console.log(form)
+
     return (
 
         <div>
@@ -103,10 +95,10 @@ const ApplicationForm = () => {
                 <FormContainer>
                     <h3>Inscriçao de viagem para:</h3> <h2>{params.name}</h2>
 
-                    <form onSubmit={onSubmitClick}>
-
+                    <form onSubmit={sendApplication}>
+                        <br />
                         <div>
-                            <br />
+
                             <Input
                                 name="name"
                                 value={form.name}
@@ -115,9 +107,9 @@ const ApplicationForm = () => {
                                 placeholder='Nome'
                             />
                         </div>
-
+                        <br />
                         <div>
-                            <br />
+
                             <Input
                                 name="age"
                                 value={form.age}
@@ -126,9 +118,8 @@ const ApplicationForm = () => {
                                 placeholder='Idade'
                             />
                         </div>
-
+                        <br />
                         <div>
-                            <br />
                             <Input
                                 name="applicationText"
                                 value={form.applicationText}
@@ -137,9 +128,9 @@ const ApplicationForm = () => {
                                 placeholder='digite seu texto'
                             />
                         </div>
-
+                        <br />
                         <div>
-                            <br />
+
                             <Input
                                 name="profession"
                                 value={form.profession}
@@ -148,9 +139,9 @@ const ApplicationForm = () => {
                                 placeholder='Profissão'
                             />
                         </div>
-
+                        <br />
                         <div>
-                            <br />
+
                             <Select
                                 name="country"
                                 value={form.country}
@@ -408,12 +399,14 @@ const ApplicationForm = () => {
                                 <option value="Zimbabwe">Zimbabwe</option>
                                 <option value="Zâmbia">Zâmbia</option>
                             </Select>
-                        </div><br />
+                        </div>
+                        <br />
                         <ContainerBotao>
                             <Button
-                                onClick={sendApplication}
+                                type='submit'
                                 colorScheme='purple'
-                                variant='solid'> Enviar </Button>
+                                variant='solid'> Enviar
+                            </Button>
                         </ContainerBotao>
                     </form>
 
