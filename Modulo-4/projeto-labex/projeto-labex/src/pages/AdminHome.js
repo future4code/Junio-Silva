@@ -86,7 +86,7 @@ const AdminHome = () => {
 
     const goToCreateTrip = () => {
        history.push("/createtrip")
-       console.log("clicou createtrip")
+       console.log("clicked createtrip")
     }
 
     const deleteTrip = (id) => {
@@ -95,7 +95,7 @@ const AdminHome = () => {
 
     const goBack = () => {
         history.goBack()
-        console.log("clicou home")
+        console.log("clicked")
      }
 
     const list = UseTripRequest(`${BASE_URL}/trips`, [])
