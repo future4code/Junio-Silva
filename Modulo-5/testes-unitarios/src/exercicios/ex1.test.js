@@ -3,6 +3,7 @@
 import { checaBissexto } from "./ex1";
 
 describe("Checa bissexto", () => {
+  
   test("retorna true pra 1600", () => {
     const resultado = checaBissexto(1600);
 
