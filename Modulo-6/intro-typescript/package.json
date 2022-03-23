@@ -1,0 +1,20 @@
+{
+  "name": "intro-typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-ex1": "tsc && node ./build/index1.js",
+    "start-ex2": "tsc && node ./build/index2.js",
+    "start-ex3": "tsc && node ./build/index3.js",
+    "start-ex4": "tsc && node ./build/index4.js",
+    "start-ex5": "tsc && node ./build/index5.js"
+  },
+  "keywords": [],
+  "author": "Junio <juniorjob21@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^4.6.2"
+  }
+}
