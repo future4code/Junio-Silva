@@ -1,3 +1,6 @@
+//EXERCÍCIO 4
+
+
 const comparaDoisNumeros: (num1: number, num2: number) => number = (num1, num2) => {
     let maiorNumero: number;
     let menorNumero: number;

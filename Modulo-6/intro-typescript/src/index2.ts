@@ -1,3 +1,6 @@
+//EXERCÍCIO 2
+
+
 const imprimeTresCoresFavoritas: () => void = () => {
    const cor1: string = process.argv[2]
    const cor2: string = process.argv[3]
