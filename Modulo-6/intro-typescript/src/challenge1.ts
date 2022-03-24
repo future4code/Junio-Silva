@@ -24,9 +24,10 @@ const comparaNums: (num1: number, num2:number) => void = (num1, num2) => {
         maiorNumero = num2
     }
 
-    console.log('O resultado da soma dos dois numeros é:  ', num1+num2)
-    console.log('O resultado da subtração dos dois numeros é:  ', num1-num2)
-    console.log('O resultado da multiplicação dos dois numeros é:  ', num1*num2)
-    console.log('O maior dos dois numeros é:  ', num1*num2)
-
+    console.log(`${num1} + ${num2} = ${num1+num2}`)
+    console.log(`${num1} - ${num2} = ${num1-num2}`)
+    console.log(`${num1} x ${num2} = ${num1*num2}`)
+    console.log('O maior dos dois numeros é: ', maiorNumero)
 }
+
+console.log(comparaNums(num1,num2))
