@@ -1,1 +1,1 @@
-{"version":3,"file":"challenge3.js","sourceRoot":"","sources":["../src/challenge3.ts"],"names":[],"mappings":""}
+{"version":3,"file":"challenge3.js","sourceRoot":"","sources":["../src/challenge3.ts"],"names":[],"mappings":";AAAA,MAAM,eAAe,GAA2B,CAAC,IAAI,EAAE,EAAE;IAErD,IAAI,OAAO,GAAG,IAAI,CAAC,KAAK,CAAC,EAAE,CAAC,CAAC,OAAO,EAAE,CAAC,IAAI,CAAC,EAAE,CAAC,CAAA;IAC/C,OAAO,CAAC,GAAG,CAAC,OAAO,CAAC,CAAA;AAExB,CAAC,CAAA;AAED,MAAM,QAAQ,GAAU,OAAO,CAAC,IAAI,CAAC,CAAC,CAAC,CAAA;AACvC,eAAe,CAAC,QAAQ,CAAC,CAAA"}

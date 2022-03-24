@@ -43,6 +43,6 @@ const DNAtoRNA:  (DNA: string) => void = (DNA) => {
     console.log(RNA)
 }
 
-const DNA = process.argv[2]
+const DNA: string = process.argv[2]
 
 DNAtoRNA(DNA)
