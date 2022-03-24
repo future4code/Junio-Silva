@@ -11,5 +11,6 @@
 const [name, age] = [
     process.argv[2] , 
     Number(process.argv[3])]
-    
+
 console.log(`Olá, ${name}! Você tem ${age} anos. Sua idade daqui 7 anos será ${age+7}.`)
+console.log("\033[34m Aqui esta o texto em vermelho.")
