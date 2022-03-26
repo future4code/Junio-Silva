@@ -1,20 +1,20 @@
 //EXERCICIO 4
 // Considerando o array, crie um ENUM para os setores e um type para as pessoas colaboradoras. Em seguida, crie uma função que receba este arraycomo parâmetro e retorne apenas as pessoas do setor de marketing que trabalham presencialmente. 
 
-type colaborador = {
+type employee = {
     nome: string, 
     salário: number, 
     setor: string,
     presencial: boolean
 }
 
-enum SETOR {
+enum SECTION {
 MARKETING = 'marketing',
 VENDAS = 'vendas',
 FINANCEIRO  = 'financeiro'
 }
 
-const funcionarios: Array<colaborador>  = 
+const employeeList: Array<employee>  = 
 [
 	{ nome: "Marcos", salário: 2500, setor: "marketing", presencial: true },
 	{ nome: "Maria" ,salário: 1500, setor: "vendas", presencial: false},
@@ -25,8 +25,9 @@ const funcionarios: Array<colaborador>  =
 	{ nome: "Paola" ,salário: 3500, setor: "marketing", presencial: true }
 ]
 
-function employeeFilter(employees: Array<colaborador>) : Array<colaborador> {
-    return employees.filter((item) => {return item.setor  === SETOR.MARKETING && item.presencial === true})
+function employeeFilter(employees: Array<employee>) : Array<employee> {
+    return employees.filter((item) => {return item.setor  === SECTION.MARKETING && item.presencial === true})
 }
 
-console.table(employeeFilter(funcionarios))
+//FUNCIONOU ;D
+console.table(employeeFilter(employeeList))

@@ -1,10 +1,10 @@
-var SETOR;
-(function (SETOR) {
-    SETOR["MARKETING"] = "marketing";
-    SETOR["VENDAS"] = "vendas";
-    SETOR["FINANCEIRO"] = "financeiro";
-})(SETOR || (SETOR = {}));
-const funcionarios = [
+var SECTION;
+(function (SECTION) {
+    SECTION["MARKETING"] = "marketing";
+    SECTION["VENDAS"] = "vendas";
+    SECTION["FINANCEIRO"] = "financeiro";
+})(SECTION || (SECTION = {}));
+const employeeList = [
     { nome: "Marcos", salário: 2500, setor: "marketing", presencial: true },
     { nome: "Maria", salário: 1500, setor: "vendas", presencial: false },
     { nome: "Salete", salário: 2200, setor: "financeiro", presencial: true },
@@ -14,7 +14,7 @@ const funcionarios = [
     { nome: "Paola", salário: 3500, setor: "marketing", presencial: true }
 ];
 function employeeFilter(employees) {
-    return employees.filter((item) => { return item.setor === SETOR.MARKETING && item.presencial === true; });
+    return employees.filter((item) => { return item.setor === SECTION.MARKETING && item.presencial === true; });
 }
-console.table(employeeFilter(funcionarios));
+console.table(employeeFilter(employeeList));
 //# sourceMappingURL=exercicio4.js.map

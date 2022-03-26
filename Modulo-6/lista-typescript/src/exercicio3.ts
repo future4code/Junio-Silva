@@ -31,8 +31,8 @@ function manageFilms(name: string, releaseDate: number, genre: string, score?: n
 
     return MoovieDetails
 }
-//COM score
+//COM score FUNCIONOU ;D 
 console.table([manageFilms("Jogos Mortais", 1884, "Terror", 8)])
 
-//SEM score
+//SEM score FUNCIONOU ;D
 console.table([manageFilms("Jogos Mortais", 1884, "Terror")])
