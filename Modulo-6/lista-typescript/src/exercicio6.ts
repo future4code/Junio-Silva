@@ -15,20 +15,25 @@ const DataBaseClients: Array<clientBalance>  =
 
 function ClientsAbleToLoan (lista: Array<clientBalance> ): Array<clientBalance> {
 
-    let approvedClients: Array<clientBalance> = []
-    lista.map((client)=>{
-        
-        let soma:number = 0;
+    
+    const UpdatedClientsList: Array<clientBalance> = lista.map((client)=>{
+        let debits:number = 0;
         
         for(let i = 0; i < client.debitos.length-1; i++) {
-            soma += client.debitos[i]; 
-            if (client.saldoTotal < soma) { approvedClients.push(client)}
+            debits += client.debitos[i]; 
         }
-
-        return approvedClients
+         client["saldoTotal"] = client.saldoTotal-debits; 
+         return client
     })
 
-return approvedClients
+
+    const ApprovedClientsList : Array<clientBalance> = UpdatedClientsList
+    .filter((client)=> {
+        return client.saldoTotal < 0
+    })
+
+return ApprovedClientsList
 }
 
+// FUNCIONANDO! ;DD
 console.table(ClientsAbleToLoan(DataBaseClients))

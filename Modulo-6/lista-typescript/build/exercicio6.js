@@ -7,18 +7,19 @@ const DataBaseClients = [
     { cliente: "Soter", saldoTotal: 1200, debitos: [] }
 ];
 function ClientsAbleToLoan(lista) {
-    let approvedClients = [];
-    lista.map((client) => {
-        let soma = 0;
+    const UpdatedClientsList = lista.map((client) => {
+        let debits = 0;
         for (let i = 0; i < client.debitos.length - 1; i++) {
-            soma += client.debitos[i];
-            if (client.saldoTotal < soma) {
-                approvedClients.push(client);
-            }
+            debits += client.debitos[i];
         }
-        return approvedClients;
+        client["saldoTotal"] = client.saldoTotal - debits;
+        return client;
     });
-    return approvedClients;
+    const ApprovedClientsList = UpdatedClientsList
+        .filter((client) => {
+        return client.saldoTotal < 0;
+    });
+    return ApprovedClientsList;
 }
 console.table(ClientsAbleToLoan(DataBaseClients));
 //# sourceMappingURL=exercicio6.js.map
