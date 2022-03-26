@@ -22,7 +22,6 @@ function presentation(name, birthDate) {
         month: Number(separatedDate[1]),
         year: Number(separatedDate[2]),
     };
-    console.log(birth.month);
     switch (birth.month) {
         case 1:
             birth.month = Meses.JANEIRO;
