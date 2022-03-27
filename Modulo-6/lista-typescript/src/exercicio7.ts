@@ -3,12 +3,12 @@
 // Aproveitando a função já feita, faça uma nova função que receba o arrayde estoque como parâmetro, use a função ajustaPreco para corrigir os preços e retorne a lista de estoque ordenada pela quantidade de cada produto.
 
 type product = {
-    name: string,
-    quantity: number,
-    unityPrice: number
+    nome: string,
+    quantidade: number,
+    valorUnitario: any
 }
 
-const productsList (products: Array<product>): Array<product> {}
+const productsList : Array<product>  =
 [
 	{ nome: "MacMugffin", quantidade: 37, valorUnitario: 51.040},
 	{ nome: "Vassoura voadora", quantidade: 56, valorUnitario: 210.0},
@@ -19,9 +19,27 @@ const productsList (products: Array<product>): Array<product> {}
 	{ nome: "Pokebola", quantidade: 200, valorUnitario: 99.9915}
 ]
 
-const ajustaPreco = (preco :number): string => {
-	const valorAjustado: string = preco.toFixed(2).replace('.', ',')
-	return "R$ "+valorAjustado
+function updateProductList (products: Array<product>): any {
+
+    let newlist : Array<product> = products.map((product)=> {
+        const ajustaPreco = (preco :number): string => {
+            const valorAjustado: string = preco.toFixed(2).replace('.', ',')
+            return "R$ "+valorAjustado
+        }
+
+        product["valorUnitario"] = ajustaPreco(product.valorUnitario)
+        return product
+    })
+
+    let orderedList: Array<product> = newlist.sort((a,b)=>{return b.quantidade-a.quantidade})
+
+    return orderedList 
 }
 
-for(let i= 0; i)
+console.table(updateProductList(productsList))
+
+
+
+
+
+

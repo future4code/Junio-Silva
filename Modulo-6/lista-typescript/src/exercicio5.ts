@@ -16,6 +16,8 @@ type person =
 	{name: "Carina", email: "carina@email.com", role: "admin"}      
 ] 
 
+
+
 function adminFilterEmail (list: Array<person>): string[] {
 
     const filteredEmail: Array<person> = list.filter((person)=>{
