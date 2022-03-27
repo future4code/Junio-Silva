@@ -36,6 +36,7 @@ function updateProductList (products: Array<product>): any {
     return orderedList 
 }
 
+//Funcionou :D
 console.table(updateProductList(productsList))
 
 
