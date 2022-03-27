@@ -22,9 +22,9 @@ function adminFilterEmail (list: Array<person>): string[] {
         if(person.role === "admin"){return person.email}
     })
 
-let emails : string[] = []
+    let emails : string[] = []
 
-     for(let i=0; i <= filteredEmail.length-1; i++) {
+    for(let i=0; i <= filteredEmail.length-1; i++) {
         emails.push(filteredEmail[i].email) 
     } 
      

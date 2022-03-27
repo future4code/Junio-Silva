@@ -3,16 +3,12 @@
 //     Crie um função que receba uma `string` com o nome e outra `string` com uma data de nascimento (ex.: “24/04/1993”). A função deve separar o dia, o mês e ano e retornar uma `string` no seguinte formato:
 //     "Olá me chamo {NOME}, nasci no dia {DIA} do mês de {MÊS} do ano de {ANO}" 
 
-const Name :string = process.argv[2]
+const NameTeste :string = process.argv[2]
 const birthDate:string = process.argv[3]
 
 function presentation(name: string, birthDate: string) : string {
 
-    type date = {
-        day: number,
-        month: number|string,
-        year: number
-    }
+
 
     enum Meses {
         JANEIRO = "Janeiro",
@@ -29,12 +25,21 @@ function presentation(name: string, birthDate: string) : string {
         DEZEMBRO = "Dezembro",
     }
 
-    const separatedDate: string[] =  birthDate.split("/")
+    const separatedDate: string[] =  birthDate.split("/")  // [ 05, 06, 2000 ]
+
+
+    type date = {
+        day: number,
+        month: number|string,
+        year: number
+    }
+
     const birth: date = {
         day: Number(separatedDate[0]),
         month: Number(separatedDate[1]),
         year: Number(separatedDate[2]),
     }
+
 
     switch (birth.month) {
         case 1:
@@ -79,4 +84,4 @@ function presentation(name: string, birthDate: string) : string {
 }
 
 //FUNCIONANDO !!! :D
-console.log(presentation(Name,birthDate))
+console.log(presentation(NameTeste,birthDate))

@@ -1,7 +1,11 @@
-const NameTeste = process.argv[2];
-const birthDate = process.argv[3];
+//EXERCICIO 1
+//     Crie um função que receba uma `string` com o nome e outra `string` com uma data de nascimento (ex.: “24/04/1993”). A função deve separar o dia, o mês e ano e retornar uma `string` no seguinte formato:
+//     "Olá me chamo {NOME}, nasci no dia {DIA} do mês de {MÊS} do ano de {ANO}" 
+var Name = process.argv[2];
+var birthDate = process.argv[3];
+
 function presentation(name, birthDate) {
-    let Meses;
+    var Meses;
     (function (Meses) {
         Meses["JANEIRO"] = "Janeiro";
         Meses["FEVEREIRO"] = "Fevereiro";
@@ -16,11 +20,11 @@ function presentation(name, birthDate) {
         Meses["NOVEMBRO"] = "Novembro";
         Meses["DEZEMBRO"] = "Dezembro";
     })(Meses || (Meses = {}));
-    const separatedDate = birthDate.split("/");
-    const birth = {
+    var separatedDate = birthDate.split("/");
+    var birth = {
         day: Number(separatedDate[0]),
         month: Number(separatedDate[1]),
-        year: Number(separatedDate[2]),
+        year: Number(separatedDate[2])
     };
     switch (birth.month) {
         case 1:
@@ -60,7 +64,7 @@ function presentation(name, birthDate) {
             birth.month = Meses.DEZEMBRO;
             break;
     }
-    return `Olá me chamo ${name}, nasci no dia ${birth.day} do mês de ${birth.month} do ano de ${birth.year}`;
+    return "Ol\u00E1 me chamo ".concat(name, ", nasci no dia ").concat(birth.day, " do m\u00EAs de ").concat(birth.month, " do ano de ").concat(birth.year);
 }
-console.log(presentation(NameTeste, birthDate));
-//# sourceMappingURL=exercicio1.js.map
+//FUNCIONANDO !!! :D
+console.log(presentation(Name, birthDate));

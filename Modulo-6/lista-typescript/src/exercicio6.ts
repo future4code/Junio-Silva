@@ -15,17 +15,16 @@ const DataBaseClients: Array<clientBalance>  =
 
 function ClientsAbleToLoan (lista: Array<clientBalance> ): Array<clientBalance> {
 
-    
     const UpdatedClientsList: Array<clientBalance> = lista.map((client)=>{
         let debits:number = 0;
         
-        for(let i = 0; i < client.debitos.length-1; i++) {
+        for(let i = 0; i < client.debitos.length; i++) {
             debits += client.debitos[i]; 
         }
-         client["saldoTotal"] = client.saldoTotal-debits; 
+         client["saldoTotal"] -= debits; 
          return client
-    })
 
+    })
 
     const ApprovedClientsList : Array<clientBalance> = UpdatedClientsList
     .filter((client)=> {

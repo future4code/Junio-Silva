@@ -9,10 +9,10 @@ const DataBaseClients = [
 function ClientsAbleToLoan(lista) {
     const UpdatedClientsList = lista.map((client) => {
         let debits = 0;
-        for (let i = 0; i < client.debitos.length - 1; i++) {
+        for (let i = 0; i < client.debitos.length; i++) {
             debits += client.debitos[i];
         }
-        client["saldoTotal"] = client.saldoTotal - debits;
+        client["saldoTotal"] -= debits;
         return client;
     });
     const ApprovedClientsList = UpdatedClientsList
