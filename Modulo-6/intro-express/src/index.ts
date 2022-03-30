@@ -35,12 +35,13 @@ console.log(usuarios)
 //********************************************************************************************************* */
 //EXERCICIO 4) 
 
-app.get("/users", (request, Response) => {   
+app.get("/user", (request: Request, response: Response) => {  
 
-  Response.status(201).send("Bateu ok")
-  
+  let ListaUsuário =  usuarios
+  response.status(201).send(  
+    ListaUsuário
+    )
 })
-
 
 //********************************************************************************************************* */
 //EXERCICIO 5) 
