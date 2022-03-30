@@ -18,20 +18,19 @@ app.get("/", (request, Response) => {
     Response.status(201).send("Bateu ok");
 });
 //********************************************************************************************************* */
-//EXERCICIO 2) 
-console.log(Database_1.usuarios);
-//********************************************************************************************************* */
 //EXERCICIOS 2 e 3)
 //fiz a tipagem e criei, o array de objetos no arquivo database.ts
 //********************************************************************************************************* */
 //EXERCICIO 4) 
-app.get("/users", (request, Response) => {
-    Response.status(201).send("Bateu ok");
+app.get("/user", (request, response) => {
+    let ListaUsuário = Database_1.usuarios;
+    response.status(201).send(ListaUsuário);
 });
 //********************************************************************************************************* */
-//EXERCICIO 5) 
-//********************************************************************************************************* */
-//EXERCICIO 6) 
+//EXERCICIOS 5 e 6) 
+//fiz a tipagem e criei o array de posts no arquivo Database.ts
+//JUSTIFICATIVA: Eu criei o array de posts dentro do array, de usuário... 
+//Acho que é o mais coerente, que dessa forma depois dá pra filtrar esses posts pelo ID do usuário.
 //********************************************************************************************************* */
 //EXERCICIO 7) 
 //********************************************************************************************************* */
