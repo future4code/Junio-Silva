@@ -1,4 +1,4 @@
-type user = {
+export type user = {
     id: number,
     name: string,
     phone: string,
@@ -7,7 +7,7 @@ type user = {
     posts: Array<post>
 }
 
-type post = {
+export type post = {
     userId: number,
     id: number,
     title: string,

@@ -1,6 +1,6 @@
 import express, {Request, Response} from "express"
 import cors from "cors"
-import {usuarios} from "./Database"
+import {usuarios, user, post} from "./Database"
 
 const app = express()
 
@@ -30,9 +30,9 @@ app.get("/", (request, Response) => {
 
 app.get("/user", (request: Request, response: Response) => {  
 
-  let ListaUsuário =  usuarios
+  let listaUsuario: Array<user> =  usuarios
   response.status(201).send(  
-    ListaUsuário
+    listaUsuario
     )
 })
 
@@ -47,19 +47,33 @@ app.get("/user", (request: Request, response: Response) => {
 
 //********************************************************************************************************* */
 //EXERCICIO 7) 
+
+app.get("/posts", (request: Request, response: Response) => {  
+
+  let listaUsuario1 : Array<user> =  usuarios
+  let posts: Array<post> = listaUsuario1.map((usuario)=>{ return usuario.posts}).flat(1)
+  response.status(201).send(posts)
+})
+
 //********************************************************************************************************* */
 //EXERCICIO 8) 
-//********************************************************************************************************* */
-//EXERCICIO 9) 
 
+app.get("/posts/:id", (request: Request, response: Response) => {  
+  const ID : number = Number(request.params.id) 
+  console.log(ID)
+  if(!ID){
+    response.status(400).send("O fornecimento de um ID é obrigatório, tente novamente informando todos os parâmetros necessários!")
+  }
 
+  let listaUsuario2 =  usuarios
+  let postPorId 
+  
+  listaUsuario2.forEach((usuario)=>{
+    if(usuario.id === ID){ return postPorId = usuario.posts}
+  })
 
-
-
-
-
-
-
+  response.status(201).send(postPorId)
+})
 
 //POR PADRÃO DEIXAR POR ULTIMO, NO ARQUIVO DE CÓDIGO!
 //execução na porta 3003  

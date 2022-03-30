@@ -23,8 +23,8 @@ app.get("/", (request, Response) => {
 //********************************************************************************************************* */
 //EXERCICIO 4) 
 app.get("/user", (request, response) => {
-    let ListaUsuário = Database_1.usuarios;
-    response.status(201).send(ListaUsuário);
+    let listaUsuario = Database_1.usuarios;
+    response.status(201).send(listaUsuario);
 });
 //********************************************************************************************************* */
 //EXERCICIOS 5 e 6) 
@@ -33,10 +33,28 @@ app.get("/user", (request, response) => {
 //Acho que é o mais coerente, que dessa forma depois dá pra filtrar esses posts pelo ID do usuário.
 //********************************************************************************************************* */
 //EXERCICIO 7) 
+app.get("/posts", (request, response) => {
+    let listaUsuario1 = Database_1.usuarios;
+    let posts = listaUsuario1.map((usuario) => { return usuario.posts; }).flat(1);
+    response.status(201).send(posts);
+});
 //********************************************************************************************************* */
 //EXERCICIO 8) 
-//********************************************************************************************************* */
-//EXERCICIO 9) 
+app.get("/posts/:id", (request, response) => {
+    const ID = Number(request.params.id);
+    console.log(ID);
+    if (!ID) {
+        response.status(400).send("O fornecimento de um ID é obrigatório, tente novamente informando todos os parâmetros necessários!");
+    }
+    let listaUsuario2 = Database_1.usuarios;
+    let postPorId;
+    listaUsuario2.forEach((usuario) => {
+        if (usuario.id === ID) {
+            return postPorId = usuario.posts;
+        }
+    });
+    response.status(201).send(postPorId);
+});
 //POR PADRÃO DEIXAR POR ULTIMO, NO ARQUIVO DE CÓDIGO!
 //execução na porta 3003  
 app.listen(3000, () => {
