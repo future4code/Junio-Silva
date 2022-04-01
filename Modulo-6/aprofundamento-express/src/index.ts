@@ -1,7 +1,7 @@
 import express, {Request, Response} from "express"
 import cors from "cors"
 import { AddressInfo } from "net";
-import {afazeres} from "./dataBase"
+import {afazeres, afazer} from "./dataBase"
 
 const app = express()
 
@@ -26,18 +26,38 @@ app.get("/ping", (req, res) => {
 //EXERCICIO 4)
 //Construa um endpoint que retorne todos os afazeres do exercício anterior de acordo com um único status, ou seja, retorne ou afazeres //concluídos ou somente os que ainda estão em andamento.
 
-app.get("/users/todos/true", (req, res) => { 
+app.get("/users/todos/true", (req: Request, res: Response) => { 
 
-    const listaAfazeresConcluidos = afazeres.filter((afazer)=> {
+    const listaAfazeresConcluidos:Array<afazer> = afazeres.filter((afazer)=> {
         return afazer.completed === true
     }) 
-    res.send(listaAfazeresConcluidos)
+    res.status(201).send(listaAfazeresConcluidos)
 
 })
-//EXERCICIO 4)
+//EXERCICIO 5)
 //Construa um endpoint de criação de afazer. A resposta deve retornar o array de afazeres atualizado.
 
+app.post("/users/todos/create", (req: Request, res: Response) => {
 
+    let title = req.body.title
+    let completed = req.body.completed
+    
+
+    if(!title && completed){
+        res.status(404).send("Verifique os parâmetros informados")
+        return
+    }
+
+    const novaTarefa: afazer  = {
+        "userId": 1,
+        "id": afazeres.length+1,
+        "title": title,
+        "completed": completed
+    }
+
+    let listaAtualizada : Array<afazer> = [...afazeres, novaTarefa]
+    res.status(201).send(listaAtualizada)
+})
 
 //POR PADRÃO DEIXAR POR ULTIMO, NO ARQUIVO DE CÓDIGO!
 //execução na porta 3003  

@@ -1,45 +1,45 @@
-type aFazer = {
+export type afazer = {
     "userId": number,
     "id": number,
     "title": string,
     "completed": boolean
 }
 
-export const afazeres: Array<aFazer> = [
+export const afazeres: Array<afazer> = [
     {
         "userId": 1,
         "id": 1,
-        "title": "delectus aut autem",
+        "title": "Comprar pão",
         "completed": true
     },
     {
         "userId": 1,
         "id": 2,
-        "title": "delectus aut autem",
+        "title": "Lavar roupas",
         "completed": false
     },
     {
-        "userId": 2,
-        "id": 1,
-        "title": "delectus aut autem",
+        "userId": 1,
+        "id": 3,
+        "title": "Varrer o chão",
         "completed": false
     },
     {
-        "userId": 2,
-        "id": 2,
-        "title": "delectus aut autem",
+        "userId": 1,
+        "id": 4,
+        "title": "Almoçar",
         "completed": true
     },
     {
-        "userId": 3,
-        "id": 1,
-        "title": "delectus aut autem",
+        "userId": 1,
+        "id": 5,
+        "title": "Dar ração para o cachorro",
         "completed": true
     },
     {
-        "userId": 3,
-        "id": 2,
-        "title": "delectus aut autem",
+        "userId": 1,
+        "id": 6,
+        "title": "Estudar",
         "completed": true
     },
 ]
