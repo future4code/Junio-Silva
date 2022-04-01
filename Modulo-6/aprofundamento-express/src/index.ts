@@ -58,6 +58,36 @@ app.post("/users/todos/create", (req: Request, res: Response) => {
     let listaAtualizada : Array<afazer> = [...afazeres, novaTarefa]
     res.status(201).send(listaAtualizada)
 })
+//EXERCICIO 6)
+//Construa um endpoint de edição do status de um afazer, ou seja, de completo para incompleto e vice-versa.
+
+app.post("/users/todos/editstate", (req: Request, res: Response) => {
+
+    let postId = req.query.id
+    let numberId = Number(postId)
+    console.log(numberId)
+
+    if(!postId){
+        console.log(typeof(postId))
+        res.status(404).send(`É necessário informar o id do post ${postId}`)
+        return
+    }
+
+    let novoStatus = afazeres.map((tarefa)=> {
+        if(tarefa.id === numberId){ 
+            tarefa.completed = !tarefa.completed  
+        }
+        return tarefa
+    }
+    )
+    console.log(postId)
+    res.status(200).send(novoStatus)
+
+
+
+})
+
+
 
 //POR PADRÃO DEIXAR POR ULTIMO, NO ARQUIVO DE CÓDIGO!
 //execução na porta 3003  
