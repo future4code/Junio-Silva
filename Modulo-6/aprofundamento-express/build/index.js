@@ -13,5 +13,5 @@ app.use((0, cors_1.default)());
 //POR PADRÃO DEIXAR POR ULTIMO, NO ARQUIVO DE CÓDIGO!
 //execução na porta 3003  
 app.listen(3000, () => {
-    console.log("Servidor Funcionando!");
+    console.log("Servidor Rodando!");
 });
