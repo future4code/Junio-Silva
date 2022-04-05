@@ -14,6 +14,11 @@ app.get("/test"  , (request: Request, response: Response) => {
     response.status(201).send("API Bateu!  :D")
 } )
 
+// Exercício 2)
+// Crie um arquivo chamado **`data.js`** que exporta um array de produtos. 
+// Cada produto será representado por um objeto com propriedades: id (`string`), name (`string`) e price (`number`). 
+//Popule manualmente o array com pelo menos 3 produtos.
+
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
     const address = server.address() as AddressInfo;
