@@ -5,7 +5,6 @@ import { v4 as idGenerator } from 'uuid';
 import { product, productsList } from './data'
 
 const app = express();
-
 app.use(express.json());
 app.use(cors())
 
@@ -26,11 +25,10 @@ app.get("/test"  , (request: Request, response: Response) => {
 // Desenvolva um endpoint que cria um novo produto e retorna a lista de produtos atualizada. 
 // A id do produto deve ser gerada automaticamente pela API.
 
-app.post("/produto", (request: Request, response: Response) => {
+app.post("/produto/create", (request: Request, response: Response) => {
     
   let productName = request.body.name
   let productPrice = request.body.price
-
 
   try{
  
@@ -38,7 +36,7 @@ app.post("/produto", (request: Request, response: Response) => {
     throw new Error("Faltam informações no cadastro")
   }
 
-  const newProduct = {
+  const newProduct: product = {
     id: idGenerator(),
     name: productName,
     price: productPrice
@@ -54,9 +52,19 @@ app.post("/produto", (request: Request, response: Response) => {
     response.status(422).send(error.message)
   }
  })
+// Exercício 4)
+// Crie um endpoint que retorna todos os produtos.
+
+app.get("/mostrarprodutos",  (request: Request, response: Response) => { 
+
+  response.status(200).send(productsList)
+
+})
 
 
 
+
+//PADRAO DEIXAR NO FIM DO CÓDIGO.
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
     const address = server.address() as AddressInfo;
