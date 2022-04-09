@@ -39,7 +39,7 @@ exports.userList = [
         BankStatement: []
     },
     {
-        name: "Enzo Grabriel Monteiro",
+        name: "Enzo Gabriel Monteiro",
         cpf: 25496358946,
         age: 18,
         balance: 1200,

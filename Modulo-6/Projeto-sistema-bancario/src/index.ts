@@ -50,17 +50,15 @@ app.get("/user/balance", (req: Request, res: Response) => {
                 }
             })
             if (findUser) {
-                res.status(200).send(`Saldo é R$${findUser.balance.toFixed(2)} `)
+                res.status(200).send(`R$${findUser.balance.toFixed(2)} `)
             } else {
                 res.status(Errors.USER_NOT_FOUND.status).send(Errors.USER_NOT_FOUND.message)
             }
-
         }
     } catch (error: any) {
         res.status(200).send(error.message)
     }
 })
-
 //REQUISIÇOES POST
 //Cria usuário, com validações e inclui dados da criação da conta no extrato.
 app.post("/user/create", (req: Request, res: Response) => {
@@ -86,7 +84,7 @@ app.post("/user/create", (req: Request, res: Response) => {
             let time = new Date
             let date = `${time.getDate()}/${time.getMonth() + 1}/${time.getFullYear()}`
 
-            const NewTransaction = {
+            const NewTransaction: transaction = {
                 service: "Account Created",
                 value: 0,
                 date,
@@ -100,10 +98,40 @@ app.post("/user/create", (req: Request, res: Response) => {
         }
 
     } catch (error: any) {
-        res.status(Errors.MISSING_PARAMETERS.status).send(error.message)
+        res
+            .status(Errors.MISSING_PARAMETERS.status)
+            .send(error.message)
     }
 })
 
+//REQUISIÇOES PUT
+app.put("/user/deposit", (req: Request, res: Response) => {
+    try {
+
+        let name: string = req.query.name as string
+        let cpf: number = Number(req.query.cpf)
+        let cashValue: number = Number(req.body.cashValue)
+
+        console.log(name, cpf, cashValue)
+
+        if (!name || !cpf) {
+            throw new Error(Errors.MISSING_PARAMETERS.message)
+        } else {
+            let newList: Array<user> = userList.map((user) => {
+                if (user.name === name && user.cpf === cpf) {
+                    user.balance += cashValue
+                    return user
+                }
+                return user
+            })
+            res.status(200).send("Operação realizaza com sucesso.")
+        }
+
+    } catch (error: any) {
+        res.status(Errors.MISSING_PARAMETERS.status).send(Errors.MISSING_PARAMETERS.message)
+    }
+
+})
 
 
 const server = app.listen(process.env.PORT || 3003, () => {
