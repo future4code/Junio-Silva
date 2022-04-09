@@ -124,7 +124,7 @@ app.put("/user/deposit", (req: Request, res: Response) => {
                 }
                 return user
             })
-            res.status(200).send("Operação realizaza com sucesso.")
+            res.status(200).send(newList)
         }
 
     } catch (error: any) {
