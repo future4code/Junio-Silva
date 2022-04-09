@@ -8,8 +8,10 @@ export const Errors: { [chave: string]: { status: number, message: string } } = 
 }
 
 export type transaction = {
-    service: string;
+    service?: string;
+    value: number
     date: string
+    comment: string
 }
 
 export type user  = {

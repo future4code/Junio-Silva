@@ -8,7 +8,7 @@ const express_1 = __importDefault(require("express"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 //REQUISIÇOES GET
-// Retorna todos os usuários, ou um usuário específico caso informe o parâmetro cpf que é opcional.
+//A requisição abaixo retorna todos os usuários, ou um usuário específico caso seja informado o parâmetro cpf que é opcional.
 app.get("/user", (req, res) => {
     try {
         const cpf = Number(req.query.cpf);
@@ -31,7 +31,36 @@ app.get("/user", (req, res) => {
         res.status(data_1.Errors.USER_NOT_FOUND.status).send(error.message);
     }
 });
+//A requisição abaixo retorna do usuário, necessário informar nome e cpf.
+app.get("/user/balance", (req, res) => {
+    try {
+        let cpf = Number(req.query.cpf);
+        let name = req.query.name;
+        console.log(cpf, name);
+        res.send({ cpf, name });
+        if (!name || !cpf) {
+            throw new Error(data_1.Errors.MISSING_PARAMETERS.message);
+        }
+        else {
+            const findUser = data_1.userList.find((user) => {
+                if (user.cpf === cpf && user.name === name) {
+                    console.log("found it");
+                    return user;
+                }
+            });
+            if (!findUser) {
+                throw new Error(data_1.Errors.USER_NOT_FOUND.message);
+            }
+            let balance = findUser.balance;
+            res.status(200).send(balance);
+        }
+    }
+    catch (error) {
+        res.status(data_1.Errors.USER_NOT_FOUND.status).send(error.message);
+    }
+});
 //REQUISIÇOES POST
+//Cria usuário, com validações e inclui criação da conta no extrato.
 app.post("/user/create", (req, res) => {
     try {
         let name = req.body.name;
@@ -56,11 +85,13 @@ app.post("/user/create", (req, res) => {
             console.log(date);
             const NewTransaction = {
                 service: "Account Created",
-                date
+                value: 0,
+                date,
+                comment: "Conta foi criada via agencia bancária."
             };
             newUser.BankStatement.push(NewTransaction);
             data_1.userList.push(newUser);
-            console.log(newUser);
+            console.log(data_1.userList);
             res.status(201).send("Conta criada com sucesso.");
         }
     }
