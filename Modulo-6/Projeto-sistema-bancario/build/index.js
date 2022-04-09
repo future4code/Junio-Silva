@@ -7,23 +7,65 @@ const data_1 = require("./data");
 const express_1 = __importDefault(require("express"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
-app.get("/user/:d", (req, res) => {
+//REQUISIÇOES GET
+// Retorna todos os usuários, ou um usuário específico caso informe o parâmetro cpf que é opcional.
+app.get("/user", (req, res) => {
     try {
-        const cpf = Number(req.params.cpf);
-        const cpf2 = Number(req.query.cpf);
-        console.log("cpfparams", cpf, typeof (cpf), "cpfquery", cpf2, typeof (cpf2));
+        const cpf = Number(req.query.cpf);
         if (!cpf) {
             res.status(200).send(data_1.userList);
         }
         else {
-            let filteredUser = data_1.userList.filter(user => user.cpf === cpf);
+            let filteredUser = data_1.userList.find(user => {
+                return user.cpf === cpf;
+            });
             if (!filteredUser) {
-                throw new Error("Nenhum usuário cadastrado com cpf informado!");
+                throw new Error(data_1.Errors.USER_NOT_FOUND.message);
+            }
+            else {
+                res.status(200).send(filteredUser);
             }
         }
     }
     catch (error) {
-        res.status(404).send(error.message);
+        res.status(data_1.Errors.USER_NOT_FOUND.status).send(error.message);
+    }
+});
+//REQUISIÇOES POST
+app.post("/user/create", (req, res) => {
+    try {
+        let name = req.body.name;
+        let cpf = Number(req.body.cpf);
+        let age = Number(req.body.age);
+        if (!name || !cpf || !age) {
+            throw new Error(data_1.Errors.MISSING_PARAMETERS.message);
+        }
+        else if (age < 18) {
+            throw new Error(data_1.Errors.AUTHORIZATION_NOT_FOUND.message);
+        }
+        else {
+            const newUser = {
+                name,
+                cpf,
+                age,
+                balance: 0,
+                BankStatement: []
+            };
+            let time = new Date;
+            let date = `${time.getDate()}/${time.getMonth() + 1}/${time.getFullYear()}`;
+            console.log(date);
+            const NewTransaction = {
+                service: "Account Created",
+                date
+            };
+            newUser.BankStatement.push(NewTransaction);
+            data_1.userList.push(newUser);
+            console.log(newUser);
+            res.status(201).send("Conta criada com sucesso.");
+        }
+    }
+    catch (error) {
+        res.status(data_1.Errors.MISSING_PARAMETERS.status).send(error.message);
     }
 });
 const server = app.listen(process.env.PORT || 3003, () => {
@@ -35,4 +77,3 @@ const server = app.listen(process.env.PORT || 3003, () => {
         console.error(`Failure upon starting server.`);
     }
 });
-;

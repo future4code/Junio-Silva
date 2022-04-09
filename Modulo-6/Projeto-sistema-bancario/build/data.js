@@ -1,40 +1,48 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.userList = void 0;
+exports.userList = exports.Errors = void 0;
+exports.Errors = {
+    AUTHORIZATION_NOT_FOUND: { status: 401, message: "Você nao está autenticado." },
+    USER_NOT_FOUND: { status: 404, message: "Não foi encontrado nenhum usuário com os dados informados." },
+    USER_EXISTS: { status: 409, message: "Esse usuário já existe" },
+    MISSING_PARAMETERS: { status: 422, message: "Verifique se está passando todas as informações necessárias" },
+    SOMETHING_WENT_WRONG: { status: 500, message: "Ops, Algo deu errado." },
+    BAD_REQUEST: { status: 400, message: "Requisição inválido" }
+};
 exports.userList = [
     {
-        nome: "Joao Gonçalves Neto",
+        name: "Joao Gonçalves Neto",
         cpf: 11987788552,
-        idade: 28,
-        saldo: 1500,
-        extrato: []
+        age: 28,
+        balance: 1500,
+        BankStatement: []
     },
     {
-        nome: "Maria Adonilda Martins",
+        name: "Maria Adonilda Martins",
         cpf: 12281788530,
-        idade: 48,
-        saldo: 2500,
-        extrato: []
+        age: 48,
+        balance: 2500,
+        BankStatement: []
     },
     {
-        nome: "Lucia Ferreira",
+        name: "Lucia Ferreira",
         cpf: 58214554151,
-        idade: 30,
-        saldo: 22000,
-        extrato: []
+        age: 30,
+        balance: 22000,
+        BankStatement: []
     },
     {
-        nome: "Pablo Henrique Silva",
+        name: "Pablo Henrique Silva",
         cpf: 25876925489,
-        idade: 31,
-        saldo: 7500,
-        extrato: []
+        age: 31,
+        balance: 7500,
+        BankStatement: []
     },
     {
-        nome: "Enzo Grabriel Monteiro",
+        name: "Enzo Grabriel Monteiro",
         cpf: 25496358946,
-        idade: 18,
-        saldo: 1200,
-        extrato: []
+        age: 18,
+        balance: 1200,
+        BankStatement: []
     }
 ];
