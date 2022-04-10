@@ -185,6 +185,10 @@ app.put("/user/paybill/:cpf", (req: Request, res: Response) => {
             let payment: Array<user> = userList.map((user) => {
                 if (user.cpf === userAuth) {
 
+                    if(value > user.balance){
+                        throw new Error("Seu saldo é insuficiente para efetuar essa operação.")
+                    }
+
                     user.balance -= value
 
                     let time = new Date
@@ -205,7 +209,7 @@ app.put("/user/paybill/:cpf", (req: Request, res: Response) => {
             res.status(200).send(payment)
         }
     } catch (error: any) {
-        res.status(Errors.MISSING_PARAMETERS.status).send(Errors.MISSING_PARAMETERS.message)
+        res.status(Errors.MISSING_PARAMETERS.status).send(error.message)
     }
 })
 

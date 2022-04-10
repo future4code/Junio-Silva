@@ -169,6 +169,9 @@ app.put("/user/paybill/:cpf", (req, res) => {
         else {
             let payment = data_1.userList.map((user) => {
                 if (user.cpf === userAuth) {
+                    if (value > user.balance) {
+                        throw new Error("Você não tem saldo suficiente.");
+                    }
                     user.balance -= value;
                     let time = new Date;
                     let date = `${time.getDate()}/${time.getMonth() + 1}/${time.getFullYear()}`;
@@ -187,7 +190,7 @@ app.put("/user/paybill/:cpf", (req, res) => {
         }
     }
     catch (error) {
-        res.status(data_1.Errors.MISSING_PARAMETERS.status).send(data_1.Errors.MISSING_PARAMETERS.message);
+        res.status(data_1.Errors.MISSING_PARAMETERS.status).send(error.message);
     }
 });
 const server = app.listen(process.env.PORT || 3003, () => {
