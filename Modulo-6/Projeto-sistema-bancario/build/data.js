@@ -2,12 +2,24 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.userList = exports.Errors = void 0;
 exports.Errors = {
-    AUTHORIZATION_NOT_FOUND: { status: 401, message: "Você nao está autenticado." },
-    USER_NOT_FOUND: { status: 404, message: "Não foi encontrado nenhum usuário com os dados informados." },
-    USER_EXISTS: { status: 409, message: "Esse usuário já existe" },
-    MISSING_PARAMETERS: { status: 422, message: "Verifique se está passando todas as informações necessárias" },
-    SOMETHING_WENT_WRONG: { status: 500, message: "Ops, Algo deu errado." },
-    BAD_REQUEST: { status: 400, message: "Requisição inválido" }
+    AUTHORIZATION_NOT_FOUND: {
+        status: 401, message: "Você nao está autenticado."
+    },
+    USER_NOT_FOUND: {
+        status: 404, message: "Não foi encontrado nenhum usuário com os dados informados."
+    },
+    USER_EXISTS: {
+        status: 409, message: "CPF já cadastrado"
+    },
+    MISSING_PARAMETERS: {
+        status: 422, message: "Verifique se está passando todas as informações necessárias"
+    },
+    SOMETHING_WENT_WRONG: {
+        status: 500, message: "Ops, Algo deu errado."
+    },
+    BAD_REQUEST: {
+        status: 400, message: "Requisição inválido"
+    }
 };
 exports.userList = [
     {

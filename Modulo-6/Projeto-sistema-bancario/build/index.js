@@ -93,7 +93,9 @@ app.post("/user/create", (req, res) => {
         }
     }
     catch (error) {
-        res.status(data_1.Errors.MISSING_PARAMETERS.status).send(error.message);
+        res
+            .status(data_1.Errors.MISSING_PARAMETERS.status)
+            .send(error.message);
     }
 });
 //REQUISIÇOES PUT
@@ -101,20 +103,65 @@ app.put("/user/deposit", (req, res) => {
     try {
         let name = req.query.name;
         let cpf = Number(req.query.cpf);
-        let cashValue = Number(req.body.name);
+        let cashValue = Number(req.body.cashValue);
         console.log(name, cpf, cashValue);
-        // if (!name || !cpf) {
-        //     throw new Error(Errors.MISSING_PARAMETERS.message)
-        // }else{
-        //     let newList:Array<user> = userList.map((user)=>{
-        //         if(user.name === name && user.cpf === cpf){
-        //             user.balance += cashValue
-        //         }
-        //     })
-        // }
+        if (!name || !cpf) {
+            throw new Error(data_1.Errors.MISSING_PARAMETERS.message);
+        }
+        else {
+            let newList = data_1.userList.map((user) => {
+                if (user.name === name && user.cpf === cpf) {
+                    user.balance += cashValue;
+                    let time = new Date;
+                    let date = `${time.getDate()}/${time.getMonth() + 1}/${time.getFullYear()}`;
+                    const NewTransaction = {
+                        service: "Deposit",
+                        value: cashValue,
+                        date,
+                        comment: "Depósito realizado em conta corrente."
+                    };
+                    user.BankStatement.push(NewTransaction);
+                    return user;
+                }
+                return user;
+            });
+            res.status(200).send(newList);
+        }
     }
     catch (error) {
-        console.log(error.message);
+        res.status(data_1.Errors.MISSING_PARAMETERS.status).send(data_1.Errors.MISSING_PARAMETERS.message);
+    }
+});
+app.put("/user/paybill/:cpf", (req, res) => {
+    let userAuth = Number(req.params.cpf);
+    let value = Number(req.body.value);
+    let comment = req.body.detail;
+    try {
+        if (!value || !comment) {
+            throw new Error(data_1.Errors.MISSING_PARAMETERS.message);
+        }
+        else {
+            let payment = data_1.userList.map((user) => {
+                if (user.cpf === userAuth) {
+                    user.balance -= value;
+                    let time = new Date;
+                    let date = `${time.getDate()}/${time.getMonth() + 1}/${time.getFullYear()}`;
+                    const NewTransaction = {
+                        service: "Payment",
+                        value,
+                        date,
+                        comment: `Pagamento no valor de ${value} realizado com sucesso.`
+                    };
+                    user.BankStatement.push(NewTransaction);
+                    return user;
+                }
+                return user;
+            });
+            res.status(200).send(payment);
+        }
+    }
+    catch (error) {
+        res.status(data_1.Errors.MISSING_PARAMETERS.status).send(data_1.Errors.MISSING_PARAMETERS.message);
     }
 });
 const server = app.listen(process.env.PORT || 3003, () => {

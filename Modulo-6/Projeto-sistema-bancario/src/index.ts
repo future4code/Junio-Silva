@@ -88,7 +88,7 @@ app.post("/user/create", (req: Request, res: Response) => {
                 service: "Account Created",
                 value: 0,
                 date,
-                comment: "Conta foi criada via agencia bancária."
+                comment: "Sua conta foi criada."
             }
 
             newUser.BankStatement.push(NewTransaction)
@@ -107,7 +107,6 @@ app.post("/user/create", (req: Request, res: Response) => {
 //REQUISIÇOES PUT
 app.put("/user/deposit", (req: Request, res: Response) => {
     try {
-
         let name: string = req.query.name as string
         let cpf: number = Number(req.query.cpf)
         let cashValue: number = Number(req.body.cashValue)
@@ -119,17 +118,67 @@ app.put("/user/deposit", (req: Request, res: Response) => {
         } else {
             let newList: Array<user> = userList.map((user) => {
                 if (user.name === name && user.cpf === cpf) {
+
                     user.balance += cashValue
+
+                    let time = new Date
+                    let date = `${time.getDate()}/${time.getMonth() + 1}/${time.getFullYear()}`
+
+                    const NewTransaction: transaction = {
+                        service: "Deposit",
+                        value: cashValue ,
+                        date,
+                        comment: `Depósito de R$${cashValue} realizado em conta corrente.`
+                    }
+
+                    user.BankStatement.push(NewTransaction)
                     return user
                 }
                 return user
             })
             res.status(200).send(newList)
         }
-
     } catch (error: any) {
         res.status(Errors.MISSING_PARAMETERS.status).send(Errors.MISSING_PARAMETERS.message)
     }
+})
+
+app.put("/user/paybill/:cpf", (req: Request, res: Response) => {
+
+    let userAuth = Number(req.params.cpf)
+    let value = Number(req.body.value)
+    let comment = req.body.comment
+
+    try {
+        if (!value || !comment) {
+            throw new Error(Errors.MISSING_PARAMETERS.message)
+        } else {
+            let payment: Array<user> = userList.map((user) => {
+                if (user.cpf === userAuth) {
+
+                    user.balance -= value
+
+                    let time = new Date
+                    let date = `${time.getDate()}/${time.getMonth() + 1}/${time.getFullYear()}`
+
+                    const NewTransaction: transaction = {
+                        service: "Payment",
+                        value,
+                        date,
+                        comment: `Pagamento no valor de R$${value} realizado com sucesso.`
+                    }
+
+                    user.BankStatement.push(NewTransaction)
+                    return user
+                }
+                return user
+            })
+            res.status(200).send(payment)
+        }
+    } catch (error: any) {
+        res.status(Errors.MISSING_PARAMETERS.status).send(Errors.MISSING_PARAMETERS.message)
+    }
+
 
 })
 
