@@ -61,10 +61,36 @@ app.get("/user/balance", (req, res) => {
 //REQUISIÇOES POST
 //Cria usuário, com validações e inclui dados da criação da conta no extrato.
 app.post("/user/create", (req, res) => {
+    //função ver se é maior de 18
+    function ageValidate(userBirthDate) {
+        let currentDate = new Date();
+        let year = currentDate.getFullYear();
+        let birthYearParts = userBirthDate.split('/');
+        let birthDay = Number(birthYearParts[0]);
+        let birthMonth = Number(birthYearParts[1]);
+        let birthYear = Number(birthYearParts[2]);
+        let age = year - birthYear;
+        let currentMonth = currentDate.getMonth() + 1;
+        //Se mes atual for menor que o nascimento, nao fez aniversario ainda;  
+        if (currentMonth < birthMonth) {
+            age--;
+        }
+        else {
+            //Se estiver no mes do nascimento, verificar o dia
+            if (currentMonth == birthMonth) {
+                if (new Date().getDate() < birthDay) {
+                    //Se a data atual for menor que o dia de nascimento ele ainda nao fez aniversario
+                    age--;
+                }
+            }
+        }
+        console.log(age);
+        return age;
+    }
     try {
         let name = req.body.name;
         let cpf = Number(req.body.cpf);
-        let age = Number(req.body.age);
+        let age = ageValidate(req.body.age);
         if (!name || !cpf || !age) {
             throw new Error(data_1.Errors.MISSING_PARAMETERS.message);
         }
@@ -85,7 +111,7 @@ app.post("/user/create", (req, res) => {
                 service: "Account Created",
                 value: 0,
                 date,
-                comment: "Conta foi criada via agencia bancária."
+                comment: "Sua conta foi criada."
             };
             newUser.BankStatement.push(NewTransaction);
             data_1.userList.push(newUser);
@@ -118,7 +144,7 @@ app.put("/user/deposit", (req, res) => {
                         service: "Deposit",
                         value: cashValue,
                         date,
-                        comment: "Depósito realizado em conta corrente."
+                        comment: `Depósito de R$${cashValue} realizado em conta corrente.`
                     };
                     user.BankStatement.push(NewTransaction);
                     return user;
@@ -135,7 +161,7 @@ app.put("/user/deposit", (req, res) => {
 app.put("/user/paybill/:cpf", (req, res) => {
     let userAuth = Number(req.params.cpf);
     let value = Number(req.body.value);
-    let comment = req.body.detail;
+    let comment = req.body.comment;
     try {
         if (!value || !comment) {
             throw new Error(data_1.Errors.MISSING_PARAMETERS.message);
@@ -150,7 +176,7 @@ app.put("/user/paybill/:cpf", (req, res) => {
                         service: "Payment",
                         value,
                         date,
-                        comment: `Pagamento no valor de ${value} realizado com sucesso.`
+                        comment: `Pagamento no valor de R$${value} realizado com sucesso.`
                     };
                     user.BankStatement.push(NewTransaction);
                     return user;

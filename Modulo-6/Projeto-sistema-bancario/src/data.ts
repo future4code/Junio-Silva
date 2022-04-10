@@ -1,6 +1,6 @@
 export const Errors: { [chave: string]: { status: number, message: string } } = {
     AUTHORIZATION_NOT_FOUND: { 
-        status: 401, message: "Você nao está autenticado." },
+        status: 401, message: "Você nao está autorizado, verifique os critérios de operação." },
 
     USER_NOT_FOUND: { 
         status: 404, message: "Não foi encontrado nenhum usuário com os dados informados." },

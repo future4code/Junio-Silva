@@ -62,10 +62,39 @@ app.get("/user/balance", (req: Request, res: Response) => {
 //REQUISIÇOES POST
 //Cria usuário, com validações e inclui dados da criação da conta no extrato.
 app.post("/user/create", (req: Request, res: Response) => {
+
+    //função ver se é maior de 18
+    function ageValidate(userBirthDate:string): number  { 
+        let currentDate = new Date();
+        let year = currentDate.getFullYear();
+
+        let birthYearParts : Array<string> = userBirthDate.split('/');
+        let birthDay : number = Number(birthYearParts[0]);
+        let birthMonth : number = Number(birthYearParts[1]);
+        let birthYear : number = Number(birthYearParts[2]);
+        let age : number = year - birthYear;
+        let currentMonth : number = currentDate.getMonth() + 1; 
+        //Se mes atual for menor que o nascimento, nao fez aniversario ainda;  
+        if(currentMonth < birthMonth){
+            age--; 
+        } else {
+        //Se estiver no mes do nascimento, verificar o dia
+        if(currentMonth == birthMonth){ 
+        if(new Date().getDate() < birthDay ){ 
+        //Se a data atual for menor que o dia de nascimento ele ainda nao fez aniversario
+        age--; 
+        }
+        }
+        } 
+        console.log(age)
+        return age 
+
+       }
+
     try {
         let name: string = req.body.name;
         let cpf: number = Number(req.body.cpf)
-        let age: number = Number(req.body.age)
+        let age: number = ageValidate(req.body.age)
 
         if (!name || !cpf || !age) {
             throw new Error(Errors.MISSING_PARAMETERS.message)
@@ -178,8 +207,6 @@ app.put("/user/paybill/:cpf", (req: Request, res: Response) => {
     } catch (error: any) {
         res.status(Errors.MISSING_PARAMETERS.status).send(Errors.MISSING_PARAMETERS.message)
     }
-
-
 })
 
 
