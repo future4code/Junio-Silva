@@ -36,11 +36,11 @@ RESPOSTA: Com o raw a resposta vem em um array duplo porisso é necessario usar 
 EXERCICIO 1B) Faça uma função que busque um ator pelo nome;
 */
 const getActorByName = async (name: string): Promise<any> => {
-    const result = await connection.raw(`
-      SELECT * FROM Actor WHERE name LIKE '%${name}%'
-    `)
-  
-      return result[0][0]
+    const [result] = await connection("Actor")
+    .select()
+    .where(`name`, 'like', `%${name}%`)
+
+      return result
   }
 
 app.get("/GetActor", async (req: Request, res: Response) => {
@@ -56,19 +56,6 @@ app.get("/GetActor", async (req: Request, res: Response) => {
     }
   })
 
-app.get("/actor", async (req: Request, res: Response): Promise<void> => {
-    try {
-        const result = await connection("Actor").select()
-
-        res.status(200).send(result)
-    } catch (error:any) {
-        res.status(500).send(error.message)
-    }
-})
-
-
-
-
 
 
 const server = app.listen(process.env.PORT || 3006, () => {
@@ -79,3 +66,32 @@ const server = app.listen(process.env.PORT || 3006, () => {
        console.error(`Failure upon starting server.`);
     }
 });
+
+//RESPOSTA 1C) Faça uma função que receba um gender retorne a quanidade de itens na tabela Actor com esse gender. Para atrizes, female e para atores male.
+
+const countActors = async (gender: string): Promise<any> => {
+    const result = await connection.raw(`
+    SELECT COUNT(*) as count FROM Actor WHERE gender = "${gender}"
+
+    // NA LINHA DE BAIXO TIVE QUE TRANSFORMAR O RESULTADO EM STRING, SE EU DEIXASSE COMO NÚMERO DAVA ERRO (NÃO SEI PQ)
+     const count = result[0][0].count.toString();
+     return count;
+  };
+
+app.get("/countGender/:gender", async (req: Request, res: Response) => {
+    try {
+
+        const gender = req.params.gender
+        const result =  await countActors(gender)
+        res.status(200).send(result)
+        res.end()
+
+      } catch (error:any) {
+            console.log(error.message)
+        res.status(500).send("Unexpected error")
+      }
+
+})
+
+
+
