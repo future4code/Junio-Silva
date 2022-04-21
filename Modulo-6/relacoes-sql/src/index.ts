@@ -40,7 +40,12 @@ app.use(cors());
 //EXERCICIO 1C) Tente criar uma avaliação para um filme que não existe (ou seja, um id inválido). Anote e explique o resultado da query.
 //RESPOSTA:  Código de erro: 1452. Não é possível adicionar ou atualizar uma linha filha: Houve restrição ou falha na chave estrangeira 
 
+//EXERCICIO 1D) Altere a tabela de filmes para que ela não tenha mais uma coluna chamada rating.
+//RESPOSTA: ALTER TABLE Films DROP COLUMN avaliacao;
 
+//EXERCICIO 1E) Tente apagar um filme que possua avaliações. Anote e explique o resultado da query.
+//RESPOSTA: Código de erro: 1451. Não é possível excluir ou atualizar uma linha pai: restrição de chave estrangeira falha 
+//Não foi possível excluir pq este ítem tem ligação com outro ítem de outra tabela.
 
 
 const server = app.listen(process.env.PORT || 3006, () => {
