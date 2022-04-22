@@ -175,8 +175,8 @@ VALUES(
 SELECT * FROM Films 
 INNER JOIN Rating ON Films.id = Rating.id;
 
-#NAO FUNCIONOU :(
-SELECT id, título, rate
+SELECT Films.id, Films.título,Rating.rate
 FROM Films 
 INNER JOIN Rating ON Films.id = Rating.id;
+
 ```

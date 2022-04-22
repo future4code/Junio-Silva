@@ -111,6 +111,9 @@ app.use(cors());
 
 
 //EXERCICIO 3B) Escreva uma query que retorne somente o nome, id e nota de avaliação dos filmes que já foram avaliados.
+// SELECT Films.id, Films.título,Rating.rate
+// FROM Films 
+// INNER JOIN Rating ON Films.id = Rating.id;
 
 
 const server = app.listen(process.env.PORT || 3006, () => {
