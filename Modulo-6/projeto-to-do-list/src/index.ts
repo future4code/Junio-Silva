@@ -4,14 +4,12 @@ import { AddressInfo } from "net";
 import cors from "cors";
 import { connection } from "./connection"
 import { v4 as idGenerator } from 'uuid';
+import e from "cors";
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-
-
-//CRIANDO USUÁRIO, FUNÇÃO E ENDPOINT
 type user = {
     id: string,
     name: string,
@@ -19,25 +17,114 @@ type user = {
     email: string
 }
 
-//TESTE
-app.get("/user", async (req: Request, res: Response): Promise<void> => {
+//CRIANDO USUÁRIO, FUNÇÃO E ENDPOINT
+app.post("/user", async (req: Request, res: Response): Promise<void> => {
+
+    const name = req.body.name
+    const nickname  = req.body.nickname
+    const email = req.body.email
+
+    let statusCode: number | undefined = 500
 
     let newUser: user = {
         id: idGenerator(), 
-        name: req.body.name, 
-        nickname:req.body.nickname, 
-        email:req.body.email
+        name, 
+        nickname, 
+        email
     }
 
 
     try {
+
+        if( !name|| !nickname ||!email) {
+            console.log("entrou")
+            statusCode = 400
+            throw new Error("Você não passou todos os parâmetros.")
+        }
+
          await connection("TodoListUser")
          .insert(newUser)
         res.status(201).send("Usuário criado!")
     }
     catch (error: any) {
-        res.status(500).send(error.sqlMessage || error.message)
+        res.status(statusCode).send(error.sqlMessage || error.message)
     }
+})
+
+//PEGANDO USUÁRIO PELO ID
+app.get("/user/:id", async (req: Request, res: Response): Promise<void> => {
+    const paramId: string = req.params.id
+
+    let statusCode: number = 500
+
+    try{
+
+        if(!paramId){
+            statusCode = 400
+            throw new Error("É necessário informar o ID do usuário.")
+        }
+
+        const usersList:any = await connection("TodoListUser")
+        .select()
+
+        const userById : user | undefined = usersList.find(
+            (user: user) =>  user.id === paramId)
+
+        if(!userById){
+            statusCode = 404
+            throw new Error("Nenhum usuário corresponde ao ID informado.")
+        }
+
+        res.status(202).send({id: userById.id, nickname:userById.nickname })
+
+    }catch(error:any){
+        res.status(statusCode).send(error.sqlMessage || error.message)
+    }
+
+})
+
+//EDITANDO UM USUÁRIO  PELO ID
+app.put("/user/edit/:id", async (req: Request, res: Response): Promise<void> => {
+    const paramId: string = req.params.id
+    const name: string  = req.body.name
+    const nickName: string  = req.body.nickname
+
+    console.log(paramId)
+    let statusCode: number = 500
+
+    try{
+
+        if(!paramId){
+            statusCode = 400
+            throw new Error("É necessário informar o ID do usuário.")
+        }
+
+        if(name.length === 0){
+            throw new Error("O campo 'nome' nao pode ser vazio.")
+        }else if(name){
+
+        await connection("TodoListUser")
+        .update({
+          name: name ,
+        })
+        .where({ id: paramId });}
+
+        if(nickName.length === 0){
+            throw new Error("O campo 'nickname' nao pode ser vazio.")
+        }else if(nickName){
+
+            await connection("TodoListUser")
+            .update({
+              nickname: nickName ,
+            })
+            .where({ id: paramId });}
+
+        res.status(202).send({message: "Usuário alterado com sucesso!" })
+
+    }catch(error:any){
+        res.status(statusCode).send(error.sqlMessage || error.message)
+    }
+
 })
 
 
