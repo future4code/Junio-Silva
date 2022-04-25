@@ -220,11 +220,12 @@ app.get("/task/:id", async (req: Request, res: Response): Promise<void> => {
             throw new Error("Nenhuma tarefa corresponde ao ID informado.")
         }
 
-        const [dia, mes, ano]:Array<string> = JSON.stringify(result[0].limit_date)
+        //revertendo data
+        const date:string = JSON.stringify(result[0].limit_date)
         .substring(0,11)
-        .split("-")
+        .split("-").reverse().join()
 
-        result[0].limit_date = `${ano}/${mes}/${dia}`
+        result[0].limit_date = date
 
         res.status(202).send(result[0] )
 
