@@ -1,13 +1,10 @@
 import { app } from "./app";
-import { getAllRecipes } from "./endpoints/getAllRecipes";
+import { getAllUsersFilteredbyName } from "./endpoints/GetUsersFilteredByName";
+import { getAllUserFilteredByType } from "./endpoints/GetUsersFilteredByType";
 import { Request, Response } from "express"
 import { connection } from "./data/connection"
 
+app.get("/user/name", getAllUsersFilteredbyName)
+app.get("/user/type", getAllUserFilteredByType)
 
-app.get("/recipes", getAllRecipes)
 
-
-app.get("/teste", (req: Request, res: Response ): any => {
-console.log("Funcionou")
-res.end()
-})

@@ -25,19 +25,19 @@ const createTables = () => connection
    .then(() => { console.log("Tabelas criadas") })
    .catch(printError)
 
-// const insertUsers = () => connection("aula49_users")
-//    .insert()
-//    .then(() => { console.log("Usuários criados") })
-//    .catch(printError)
+const insertUsers = () => connection("aula49_users")
+   .insert({})
+   .then(() => { console.log("Usuários criados") })
+   .catch(printError)
 
-// const insertRecipes = () => connection("aula49_recipes")
-//    .insert()
-//    .then(() => { console.log("Receitas criadas") })
-//    .catch(printError)
+const insertRecipes = () => connection("aula49_recipes")
+   .insert({})
+   .then(() => { console.log("Receitas criadas") })
+   .catch(printError)
 
-// const closeConnection = () => { connection.destroy() }
+const closeConnection = () => { connection.destroy() }
 
-// createTables()
-//    .then(insertUsers)
-//    .then(insertRecipes)
-//    .finally(closeConnection)
+createTables()
+   .then(insertUsers)
+   .then(insertRecipes)
+   .finally(closeConnection)
