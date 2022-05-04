@@ -14,24 +14,25 @@ const connection_1 = require("../connection");
 const uuid_1 = require("uuid");
 function createUser(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        console.log("entrou!");
-        let errorStatusCode = 201;
+        let errorStatusCode = 500;
         try {
             let name = req.body.name;
             let email = req.body.email;
             let password = req.body.password;
+            let type = "user";
             if (!name || !email || !password) {
                 errorStatusCode = 404;
                 throw new Error("É obrigatório informar todos os campos: Nome, E-mail e Senha");
             }
             let newUser = {
-                name,
                 id: (0, uuid_1.v4)(),
+                name,
                 email,
-                password
+                password,
+                type
             };
             yield (0, connection_1.connection)("labecommerce_users")
-                .insert({ newUser });
+                .insert(newUser);
             res.status(errorStatusCode).send("Usuário Criado com Sucesso!");
         }
         catch (error) {

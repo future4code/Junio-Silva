@@ -7,9 +7,9 @@ export async function createUser (
     req: Request, 
     res: Response
     ): Promise<void>{
+        
+        let errorStatusCode : number = 500
 
-        console.log("entrou!")
-        let errorStatusCode : number = 201
         try {
             
             let name = req.body.name
@@ -23,9 +23,9 @@ export async function createUser (
                 throw new Error("É obrigatório informar todos os campos: Nome, E-mail e Senha")
             }
 
-            let newUser : user = {
-                name, 
+            let newUser : user = { 
                 id: idGenerator(), 
+                name,
                 email, 
                 password,
                 type

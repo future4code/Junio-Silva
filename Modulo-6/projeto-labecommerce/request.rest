@@ -6,10 +6,13 @@
 // Para requisições com headers: 
 // Authorization: "token"
 
+### Pegar todos os usuários
+GET http://localhost:3006/users
 
-GET http://localhost:3006
+### Pegar todos os produtos
+GET http://localhost:3006/products
 
-###
+### Criar usuário.
 POST http://localhost:3006/users
 Content-Type: application/json
 
@@ -17,4 +20,14 @@ Content-Type: application/json
     "name": "Junio Batista da Silva",
     "email": "juniorrox@gmail.com.br",
     "password": "1528253"
+}
+
+### CRIAR PRODUTO
+POST http://localhost:3006/products
+Content-Type: application/json
+
+{
+    "name": "Teclado Gamer",
+    "price": 215.90,
+    "imageUrl": "https://i.picsum.photos/id/0/5616/3744.jpg?hmac=3GAAioiQziMGEtLbfrdbcoenXoWAW-zlyEAMkfEdBzQ"
 }
