@@ -15,6 +15,7 @@ export async function createUser (
             let name = req.body.name
             let email = req.body.email
             let password = req.body.password
+            let type = "user"
 
             
             if(!name || !email || !password){
@@ -26,11 +27,12 @@ export async function createUser (
                 name, 
                 id: idGenerator(), 
                 email, 
-                password
+                password,
+                type
             }
 
             await connection("labecommerce_users")
-            .insert({newUser})
+            .insert(newUser)
 
             res.status(errorStatusCode).send("Usuário Criado com Sucesso!")
 

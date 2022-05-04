@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "tsc && node ./build/index.js",
-    "server": "tsc && nodemon ./src/app.ts",
+    "server": "tsc && nodemon ./src/index.ts",
     "migrations": "tsnd ./src/data_base/migrations.ts"
   },
   "keywords": [],

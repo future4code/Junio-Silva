@@ -1,5 +1,3 @@
-GET http://localhost:3006
-
 // Para requisições com body:
 // Content-Type: application/json 
 // Pule 1 linha
@@ -8,8 +6,11 @@ GET http://localhost:3006
 // Para requisições com headers: 
 // Authorization: "token"
 
+
+GET http://localhost:3006
+
 ###
-POST http://localhost:3006/user
+POST http://localhost:3006/users
 Content-Type: application/json
 
 {
