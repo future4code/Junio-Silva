@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "tsc && node ./build/index.js",
-    "server": "tsc && node ./build/app.js"
+    "server": "tsc && nodemon ./src/app.ts",
+    "migrations": "tsnd ./src/data_base/migrations.ts"
   },
   "keywords": [],
   "author": "",
@@ -20,10 +21,12 @@
     "knex": "^2.0.0",
     "mysql": "^2.18.1",
     "ts-node-dev": "^1.1.8",
-    "typescript": "^4.6.4"
+    "typescript": "^4.6.4",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
+    "@types/uuid": "^8.3.4",
     "nodemon": "^2.0.16",
     "ts-node": "^10.7.0"
   }

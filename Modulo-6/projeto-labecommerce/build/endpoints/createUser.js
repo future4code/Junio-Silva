@@ -10,10 +10,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createUser = void 0;
-const connection_1 = require("../data_base/connection");
+const connection_1 = require("../connection");
 const uuid_1 = require("uuid");
 function createUser(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
+        console.log("entrou!");
         let errorStatusCode = 201;
         try {
             let name = req.body.name;

@@ -1,1 +1,19 @@
 GET http://localhost:3006
+
+// Para requisições com body:
+// Content-Type: application/json 
+// Pule 1 linha
+// {}
+
+// Para requisições com headers: 
+// Authorization: "token"
+
+###
+POST http://localhost:3006/user
+Content-Type: application/json
+
+{
+    "name": "Junio Batista da Silva",
+    "email": "juniorrox@gmail.com.br",
+    "password": "1528253"
+}
