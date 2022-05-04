@@ -31,3 +31,15 @@ Content-Type: application/json
     "price": 215.90,
     "imageUrl": "https://i.picsum.photos/id/0/5616/3744.jpg?hmac=3GAAioiQziMGEtLbfrdbcoenXoWAW-zlyEAMkfEdBzQ"
 }
+
+
+### Registrar compra
+POST http://localhost:3006/purchases
+Content-Type: application/json
+
+{
+    "user_id": "a82e5e16-5d6a-43ad-ab9b-7e8aa598c320",
+    "product_id": "27d2b313-b457-4d0e-b85d-f8f6c6e63570",
+    "quantity": "2"
+}
+
