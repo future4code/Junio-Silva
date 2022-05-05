@@ -17,18 +17,19 @@ POST http://localhost:3006/users
 Content-Type: application/json
 
 {
-    "name": "Junio Batista da Silva",
-    "email": "juniorrox@gmail.com.br",
-    "password": "1528253"
+    "name": "Neuza Silva",
+    "email": "Neuzoca55@gmail.com.br",
+    "password": "546546864148"
 }
+
 
 ### CRIAR PRODUTO
 POST http://localhost:3006/products
 Content-Type: application/json
 
 {
-    "name": "Teclado Gamer",
-    "price": 215.90,
+    "name": "Caixa de Som",
+    "price": 150,
     "imageUrl": "https://i.picsum.photos/id/0/5616/3744.jpg?hmac=3GAAioiQziMGEtLbfrdbcoenXoWAW-zlyEAMkfEdBzQ"
 }
 
@@ -39,7 +40,9 @@ Content-Type: application/json
 
 {
     "userId": "a82e5e16-5d6a-43ad-ab9b-7e8aa598c320",
-    "productId": "27d2b313-b457-4d0e-b85d-f8f6c6e63570",
+    "productId": "c01f32f9-255c-48e5-93f3-45dcb6481f95",
     "quantity": "2"
 }
 
+### buscar pelo pelo ID usuário.
+GET http://localhost:3006/users/a13f486b-8078-4f7f-b859-bb0267783aa7/purchases

@@ -16,11 +16,11 @@ export async function getProducts (
     res: Response
     ): Promise<void>{
 
-        let errorStatusCode : number = 200
+        let statusCode : number = 200
         try {
 
             let products : Promise<any> = await fetchProducts()
-            res.status(errorStatusCode).send(products)
+            res.status(statusCode).send(products)
 
         } catch (error:any) {
             res.send(error.message || error.sqlMessage)
