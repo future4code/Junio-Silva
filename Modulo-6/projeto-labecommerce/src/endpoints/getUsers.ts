@@ -2,6 +2,15 @@ import { Response, Request } from "express";
 import { connection } from "../connection"
 import { user } from "../types"
 
+export async function fetchUsers (): Promise<any> {
+
+    const result : Array<user> = await connection("labecommerce_users")
+
+    return result
+
+}
+
+
 export async function getUsers (
     req: Request, 
     res: Response
@@ -9,11 +18,11 @@ export async function getUsers (
 
         let errorStatusCode : number = 200
         try {
-           const result : Array<user> = await connection("labecommerce_users")
 
-            res.status(errorStatusCode).send(result)
+            let users : Promise<any> = await fetchUsers()
+            res.status(errorStatusCode).send(users)
 
         } catch (error:any) {
-            res.status(errorStatusCode).send(error.message)
+            res.send(error.message || error.sqlMessage)
         }
     }

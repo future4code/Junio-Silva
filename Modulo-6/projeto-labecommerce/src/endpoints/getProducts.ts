@@ -1,20 +1,28 @@
 import { Response, Request } from "express";
 import { connection } from "../connection"
-import { user } from "../types"
+import { product } from "../types"
+
+export async function fetchProducts (): Promise<any> {
+
+    const result : Array<product> = await connection("labecommerce_products")
+
+    return result
+
+}
+
 
 export async function getProducts (
     req: Request, 
     res: Response
-    ): Promise<any>{
+    ): Promise<void>{
 
-        let StatusCode : number = 200
+        let errorStatusCode : number = 200
         try {
-           const result : Array<user> = await connection("labecommerce_products")
 
-            res.status(StatusCode).send(result)
-            return result
+            let products : Promise<any> = await fetchProducts()
+            res.status(errorStatusCode).send(products)
 
         } catch (error:any) {
-            res.status(StatusCode).send(error.message)
+            res.send(error.message || error.sqlMessage)
         }
     }
