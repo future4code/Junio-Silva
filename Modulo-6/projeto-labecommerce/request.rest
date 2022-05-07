@@ -10,16 +10,16 @@
 GET http://localhost:3006/users
 
 ### Pegar todos os produtos
-GET http://localhost:3006/products
+GET http://localhost:3006/products?title=caixa&order=desc
 
 ### Criar usuário.
 POST http://localhost:3006/users
 Content-Type: application/json
 
 {
-    "name": "Neuza Silva",
-    "email": "Neuzoca55@gmail.com.br",
-    "password": "546546864148"
+    "name": "Joaozin da bicicleta",
+    "email": "jao@gmail.com.br",
+    "password": "1528963"
 }
 
 
@@ -28,8 +28,8 @@ POST http://localhost:3006/products
 Content-Type: application/json
 
 {
-    "name": "Caixa de Som",
-    "price": 150,
+    "name": "Web Cam",
+    "price": 220.50,
     "imageUrl": "https://i.picsum.photos/id/0/5616/3744.jpg?hmac=3GAAioiQziMGEtLbfrdbcoenXoWAW-zlyEAMkfEdBzQ"
 }
 
@@ -44,5 +44,5 @@ Content-Type: application/json
     "quantity": "2"
 }
 
-### buscar pelo pelo ID usuário.
+### buscar compras de um usuário pelo ID .
 GET http://localhost:3006/users/a13f486b-8078-4f7f-b859-bb0267783aa7/purchases
