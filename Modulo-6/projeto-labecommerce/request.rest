@@ -6,11 +6,12 @@
 // Para requisições com headers: 
 // Authorization: "token"
 
+
+
+
+//USER ENTITY 
 ### Pegar todos os usuários
 GET http://localhost:3006/users
-
-### Pegar todos os produtos
-GET http://localhost:3006/products?title=caixa&order=desc
 
 ### Criar usuário.
 POST http://localhost:3006/users
@@ -21,6 +22,10 @@ Content-Type: application/json
     "email": "junio_perverso2006@yahoo.com.br",
     "password": "1528963"
 }
+
+//PRODUCT ENTITY 
+### Pegar todos os produtos, com funcionalidade de filtro e ordenação
+GET http://localhost:3006/products?title=caixa&order=desc
 
 
 ### CRIAR PRODUTO
@@ -33,8 +38,8 @@ Content-Type: application/json
     "imageUrl": "https://i.picsum.photos/id/0/5616/3744.jpg?hmac=3GAAioiQziMGEtLbfrdbcoenXoWAW-zlyEAMkfEdBzQ"
 }
 
-
-### Registrar compra
+// PURCHASE ENTITY
+### Pegar todas as compras.
 POST http://localhost:3006/purchases
 Content-Type: application/json
 
@@ -43,6 +48,7 @@ Content-Type: application/json
     "productId": "c01f32f9-255c-48e5-93f3-45dcb6481f95",
     "quantity": "2"
 }
+
 
 ### buscar compras de um usuário pelo ID .
 GET http://localhost:3006/users/a13f486b-8078-4f7f-b859-bb0267783aa7/purchases
