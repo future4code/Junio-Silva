@@ -17,8 +17,8 @@ POST http://localhost:3006/users
 Content-Type: application/json
 
 {
-    "name": "Joaozin da bicicleta",
-    "email": "jao@gmail.com.br",
+    "name": "joaozinho 123",
+    "email": "junio_perverso2006@yahoo.com.br",
     "password": "1528963"
 }
 

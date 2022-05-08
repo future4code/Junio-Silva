@@ -1,5 +1,7 @@
 import knex from "knex";
 import dotenv from "dotenv";
+import nodemailer from "nodemailer"
+
 dotenv.config();
 
 
@@ -14,3 +16,4 @@ export const connection = knex({
         multiStatements: true
     }
 }) 
+
