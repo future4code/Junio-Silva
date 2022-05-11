@@ -35,14 +35,14 @@ export async function createUser (
             await connection("labecommerce_users")
             .insert(newUser)
 
-            console.log("enviando email")
-            const info = await transporter.sendMail({
-                from: `${process.env.NODEMAILER_USER}`,
-                to: `${email}`,
-                subject: 'Conta Criada',
-                text:  'Sua conta foi criada com sucesso! ',
-                html: `<h1>Olá ${name},</h1> <p>Sua conta foi criada com sucesso! Agora é só aproveitar todas as nossas ofertas.</p>`
-               })
+            // console.log("enviando email")
+            // const info = await transporter.sendMail({
+            //     from: `${process.env.NODEMAILER_USER}`,
+            //     to: `${email}`,
+            //     subject: 'Conta Criada',
+            //     text:  'Sua conta foi criada com sucesso! ',
+            //     html: `<h1>Olá ${name},</h1> <p>Sua conta foi criada com sucesso! Agora é só aproveitar todas as nossas ofertas.</p>`
+            //    })
 
             res.status(errorStatusCode).send("Usuário Criado com Sucesso!")
 

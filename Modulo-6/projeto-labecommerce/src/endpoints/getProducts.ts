@@ -4,8 +4,7 @@ import { product } from "../types"
 
 export async function fetchProducts (order?:string, title?: string): Promise<any> {
 
-    if(!order){ order = "%"} 
-    if(!title){ order = "%"} 
+    if(!title){ title = "%"} 
 
     const result : Array<product> = await connection("labecommerce_products")
     .select()

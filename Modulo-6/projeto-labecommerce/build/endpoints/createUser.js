@@ -18,7 +18,7 @@ const uuid_1 = require("uuid");
 const TransporterNodeMailer_1 = __importDefault(require("../services/TransporterNodeMailer"));
 function createUser(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        let errorStatusCode = 500;
+        let errorStatusCode = 200;
         try {
             let name = req.body.name;
             let email = req.body.email;

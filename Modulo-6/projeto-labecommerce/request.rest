@@ -25,7 +25,7 @@ Content-Type: application/json
 
 //PRODUCT ENTITY 
 ### Pegar todos os produtos, com funcionalidade de filtro e ordenação
-GET http://localhost:3006/products?title=caixa&order=desc
+GET http://localhost:3006/products
 
 
 ### CRIAR PRODUTO
