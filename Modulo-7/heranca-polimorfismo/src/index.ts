@@ -1,6 +1,8 @@
 import {v4 as idGenerator} from 'uuid'
 
-class user {
+
+//Exercicio 1
+class User {
     private id: string;
     private email: string;
     private name: string;
@@ -25,3 +27,6 @@ class user {
 		return this.name
 	}
 }
+
+const junior = new User("Junio Batista", "juniin1230@gmail.com", "1234567898")
+console.log("getters ---> ",junior.getId(),junior.getEmail(), junior.getName())
