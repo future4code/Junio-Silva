@@ -105,6 +105,8 @@ console.log(
 
     //EXERCICIOS DE POLIMORFISMO
 
+
+    //EXERCICIO 1
     export interface Client {
         name: string;
         // Refere-se ao nome do cliente
@@ -118,12 +120,84 @@ console.log(
       }
       
 
-    const client : Client = {
+    const client: Client = {
         name:"Goli",
         registrationNumber: 1,
         consumedEnergy: 100,
     
-        calculateBill: () => {
-        return 2;
+        calculateBill: () => { return 2 }
     }
+
+    console.log(client)
+
+    //EXERCICIO 2
+
+    export abstract class Place {
+      constructor(protected cep: string) {}
+    
+      public getCep(): string {
+        return this.cep;
+      }
     }
+
+  //Tentando criar uma instancia da classe abstrata.
+  //EXERCICIO 2 A) const teste = new Place()
+  //Resposta: nao é possivel criar uma instancia de uma classe abstrata.+
+
+  //EXERCICIO 2 B) Só é possivel fazer uma extensão da classe.
+
+
+  //EXERCICIO 3
+
+  //EXERCICIO 3A)
+  //RESPOSTA: Temos que extender a classe abstrata, e depois estanciar essa classe filha.
+
+  //EXERCICIO 3B) 
+  //RESPOSTA: Place é uma classe porque precisa ter um acesso restrito a um dos seus atributos, o que é impossível de se fazer em interfaces.
+
+  //EXERCICIO 3C) 
+  //RESPOSTA: Por fim, ela é abstrata por um motivo simples. O nosso sistema possui 3 tipos de lugares e preferimos criar uma classe para representar cada um deles. Então não há motivos para querermos instanciar um objeto do tipo Place porque, no nosso contexto, todos os casos deles já estão cobertos por outras classes. Isso responde à terceira pergunta: Place é abstrata porque não enxergamos uma situação em que seria necessário criar uma instância dessa classe.
+    
+    
+
+
+    export class Residence extends Place {
+      constructor(
+        protected residentsQuantity: number,
+        // Refere-se ao número de moradores da casa
+    
+        cep: string
+      ) {
+        super(cep);
+      }
+    }
+
+    const littleFamilyResidence = new Residence(5, "32676-690")
+    console.log(littleFamilyResidence.getCep())
+
+    export class Commerce extends Place {
+      constructor(
+        protected floorsQuantity: number,
+        // Refere-se à quantidade de andares do lugar
+    
+        cep: string
+      ) {
+        super(cep);
+      }
+    }
+
+    const exampleCommerce = new Commerce(2, "25485625")
+    console.log(exampleCommerce.getCep())
+
+    export class Industry extends Place {
+  constructor(
+    protected machinesQuantity: number, 
+    // Refere-se à quantidade de máquinas do local 
+    
+    cep: string
+		) {
+	    super(cep);
+  }
+}
+const ExampleIndustry = new Industry(20, "252588545")
+console.log(ExampleIndustry.getCep())
