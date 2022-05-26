@@ -5,10 +5,11 @@ export class UserController {
 
    public createUser = async ( req: Request,res: Response ) => {
         try {
-            const { name, email, password } = req.body
+            const { name, nickname, email, password } = req.body
 
             const input = {
                 name,
+                nickname,
                 email,
                 password
             }

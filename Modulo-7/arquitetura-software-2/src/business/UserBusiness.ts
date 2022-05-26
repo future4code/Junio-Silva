@@ -6,10 +6,11 @@ export class UserBusiness  {
    
     public createUser = async (input:any) => {
         try {
-        const { name, email, password } = input
+        const { name, nickname, email, password } = input
     
         if (
             !name ||
+            !nickname ||
             !email ||
             !password
         ) {
@@ -23,6 +24,7 @@ export class UserBusiness  {
         await userDatabase.insertUser({
             id,
             name,
+            nickname,
             email,
             password
         })

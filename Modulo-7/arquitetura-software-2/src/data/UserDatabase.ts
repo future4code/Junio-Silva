@@ -9,9 +9,10 @@ export class UserDatabase extends BaseDatabase {
             await UserDatabase.connection.insert({
                 id: user.id,
                 name: user.name,
+                nickname: user.nickname,
                 email: user.email,
                 password: user.password
-            }).into('User_Arq')
+            }).into('Architecture_User')
 
         } catch (error:any) {
             throw new Error(error.message)
@@ -20,7 +21,7 @@ export class UserDatabase extends BaseDatabase {
 
     public getUsers = async () => {
        try {
-        const result = await UserDatabase.connection('User_Arq').select()
+        const result = await UserDatabase.connection('Architecture_User').select()
         return result
        }catch (error:any) {
         throw new Error(error.message) 
@@ -33,7 +34,7 @@ export class UserDatabase extends BaseDatabase {
 
             console.log("userID a ser deletado:" ,userId)
 
-            await UserDatabase.connection
+            await UserDatabase.connection("Architecture_User")
             .delete()
             .where({ "id" : userId })
         

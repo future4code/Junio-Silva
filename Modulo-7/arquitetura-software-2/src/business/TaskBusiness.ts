@@ -5,6 +5,7 @@ export class TaskBusiness {
 
     public createTask = async (input:any) => {
         try {
+            console.log("business tela -->", input)
         const { 
             title, 
             description, 
@@ -35,6 +36,12 @@ export class TaskBusiness {
         } catch (error:any) {
         throw new Error(error.message)
         }
+    }
+
+    public getTasks = async () => {
+        const userDatabase = new TaskDatabase
+        const result = await userDatabase.getTasks()
+        return result
     }
 
 }

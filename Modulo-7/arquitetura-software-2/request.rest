@@ -1,4 +1,4 @@
-### Endpoint Teste
+### Pegar Usuários
 GET http://localhost:3003/user/all
 
 
@@ -7,12 +7,30 @@ POST http://localhost:3003/user
 Content-Type: application/json
 
 {
-    "name": "Anderson dos Teclados",
-    "email": "andiin@gmail.com",
-    "password": "sdasdas"
+    "name": "Jão Do Fusca",
+    "email": "jaozin@gmail.com",
+    "nickname": "jau",
+    "password": "456451981"
 }
 
 
 ### Endpoint Buscar todos os usuários.
-DELETE http://localhost:3003/user/3299a661-1ef4-4c52-a2e5-36955f6dce2c
+DELETE http://localhost:3003/user/89976d14-0ab5-4d62-817f-6bbe7b957ecd
 
+
+
+////////////////////////////////////////////////
+
+### Endpoint criar task
+POST http://localhost:3003/task
+Content-Type: application/json
+
+{
+    "title": "Comprar pão",
+    "description": "todos os dias pela manhã.",
+    "deadline": "28/05/2022",
+    "authorId": "b3db99f1-69a7-4e32-a794-d361095de550"
+}
+
+### Pegar todas as tarefas
+GET http://localhost:3003/task
