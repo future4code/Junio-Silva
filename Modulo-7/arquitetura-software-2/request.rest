@@ -1,0 +1,18 @@
+### Endpoint Teste
+GET http://localhost:3003/user/all
+
+
+### Endpoint criar usuário
+POST http://localhost:3003/user
+Content-Type: application/json
+
+{
+    "name": "Anderson dos Teclados",
+    "email": "andiin@gmail.com",
+    "password": "sdasdas"
+}
+
+
+### Endpoint Buscar todos os usuários.
+DELETE http://localhost:3003/user/3299a661-1ef4-4c52-a2e5-36955f6dce2c
+
