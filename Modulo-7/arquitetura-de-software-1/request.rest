@@ -1,0 +1,18 @@
+### Endpoint Teste
+GET http://localhost:3003/
+
+
+### Endpoint criar usuário
+POST http://localhost:3003/createUser
+Content-Type: application/json
+
+{
+    "name": "Junior Da Silva Sauro",
+    "email": "junnniiiiinrsrs@gmail.com",
+    "password": "123456789"
+}
+
+
+### Endpoint Buscar todos os usuários.
+DELETE http://localhost:3003/6207ae10-fb6a-47aa-bc96-fe48bd74fd69
+
