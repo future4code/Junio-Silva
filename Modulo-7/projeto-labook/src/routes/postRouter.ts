@@ -1,10 +1,11 @@
 import express from 'express'
-//import { MovieController } from '../controller/MovieController'
+import { PostController } from '../controller/PostController'
 
 export const postRouter = express.Router()
 
-// const movieController = new MovieController()
+const postController = new PostController()
 
-// movieRouter.post("/", movieController.create)
+postRouter.post("/", postController.create)
+postRouter.get("/:id", postController.getPostById)
 
 // movieRouter.get("/", movieController.getMovies)

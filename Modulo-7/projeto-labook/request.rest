@@ -15,18 +15,19 @@ GET http://localhost:3003/user
 
 //**********************************************************/
 
-### Criar Filme POST 
-http://localhost:3003/movie 
+### Criar POST 
+POST http://localhost:3003/post
 Content-Type: application/json
 
 {
-    "title": "Spider Man", 
-    "description": "Spider man adventures in the city", 
-    "durationInMinutes": "3", 
-    "yearOfRelease": "2005"
+
+    "photo":"www.anyimage.com/eu", 
+    "description":"kkkkk estou fazendo um post, mesmo sem ter nada o que falar.", 
+    "type": "normal",
+    "authorId": "77504dfd-f08f-4155-bb94-c779301533db"
 }
 
 //**********************************************************/
 
-### Pegar todos os Filmes. 
-GET http://localhost:3003/movie
+### Pegar Post pelo ID. 
+GET http://localhost:3003/post/1b8011d2-f0ae-4ca0-f66-5183a5a7f049

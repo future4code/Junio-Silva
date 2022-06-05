@@ -6,9 +6,7 @@ export class UserController {
 
     async create(req: Request, res: Response):Promise<void> {
       try {
-        const { name, email, password }: UserInputDTO = req.body;
-  
-        const input : UserInputDTO = { name, email, password };
+        const input: UserInputDTO = req.body;
   
        const userBusiness = new UserBusiness();
         await userBusiness.create(input);
@@ -20,7 +18,6 @@ export class UserController {
       }
   
     }
-  
   
     getUsers = async ( req: Request,res: Response ) => {
   
