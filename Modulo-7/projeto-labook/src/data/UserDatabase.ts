@@ -48,7 +48,7 @@ export class UserDatabase extends BaseDatabase {
         .innerJoin(PostDatabase.DB, "labook_friendship.friend_id", '=', 'labook_posts.author_id')
         .select("labook_posts.id", "photo", "description", "type", "created_at", "author_id")
         .orderBy("created_at", "desc")
-        console.log("feed",friendPosts)
+        
         return friendPosts
 
     } catch (error: any) {

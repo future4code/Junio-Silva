@@ -41,7 +41,7 @@ Content-Type: application/json
 //************************** FRIENDSHIP ENTITY **************************//
 
 ### add amigo pelo ID. 
-POST http://localhost:3003/friend/add/fb427246-e984-49b8-a214-7256414f0a6a?friendId=77504dfd-f08f-4155-bb94-c779301533db
+PUT http://localhost:3003/friend/add/fb427246-e984-49b8-a214-7256414f0a6a?friendId=77504dfd-f08f-4155-bb94-c779301533db
 
 ### add amigo pelo ID. 
 POST http://localhost:3003/friend/add/fb427246-e984-49b8-a214-7256414f0a6a?friendId=c2616011-737f-449a-940a-28d5358574f7
