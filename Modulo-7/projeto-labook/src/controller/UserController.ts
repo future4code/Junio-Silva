@@ -32,5 +32,36 @@ export class UserController {
           res.status(404).send(error.message)
       }
   }
+
+  getUsersById = async ( req: Request,res: Response ) => {
   
+    try {
+
+      const  id : string = req.params.id as string
+
+      const userBusiness = new UserBusiness
+      const result = await userBusiness.getUserById(id)
+
+      res.status(200).send(result)
+
+    }catch (error: any) {
+        res.status(404).send(error.message)
+    }
   }
+
+  public getPostFeed = async (req: Request, res: Response) => {
+
+    const  userId  = req.query.id as string
+
+    try {
+
+        const userBusiness = new UserBusiness
+        const result = await userBusiness.getPostFeed(userId)
+
+        res.status(200).send(result);
+
+    } catch (error: any) {}
+
+  }
+  
+}

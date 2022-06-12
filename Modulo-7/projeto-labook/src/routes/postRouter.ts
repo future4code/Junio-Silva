@@ -8,4 +8,3 @@ const postController = new PostController()
 postRouter.post("/", postController.create)
 postRouter.get("/:id", postController.getPostById)
 
-// movieRouter.get("/", movieController.getMovies)

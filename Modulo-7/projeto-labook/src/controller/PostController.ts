@@ -27,10 +27,10 @@ export class PostController {
 
         const  id : string = req.params.id as string
   
-          const postBusiness = new PostBusiness
-          const result = await postBusiness.getPostById(id)
+        const postBusiness = new PostBusiness
+        const result = await postBusiness.getPostById(id)
   
-          res.status(200).send(result)
+        res.status(200).send(result)
   
       }catch (error: any) {
           res.status(404).send(error.message)
