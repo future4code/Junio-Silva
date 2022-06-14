@@ -1,0 +1,27 @@
+### Criar Usuário
+POST http://localhost:3003/user/create
+Content-Type: application/json
+
+{
+    "name": "joaozinho 123",
+    "email": "éotaldojao@email.com",
+    "password": "24651384321"
+}
+
+### Pegar todos os usuários.
+GET http://localhost:3003/user
+
+
+### Criar Filme
+POST http://localhost:3003/movie
+Content-Type: application/json
+
+{
+    "title": "Spider Man",
+    "description": "Spider man adventures in the city",
+    "durationInMinutes": "3",
+    "yearOfRelease": "2005"
+}
+
+### Pegar todos os Filmes.
+GET http://localhost:3003/movie
