@@ -1,0 +1,52 @@
+//************************** USER ENTITY **************************//
+
+### Pegar todos os usuários. 
+GET http://localhost:3003/user
+
+
+### Pegar Feed
+GET http://localhost:3003/user/feed?id=9ddae43b-9f48-42b1-83e0-7b14271a204f
+
+
+### Criar Usuário
+POST http://localhost:3003/user/ 
+Content-Type: application/json
+
+{
+    "name": "Jonny Simpson", 
+    "email": "jhow@email.com", 
+    "password": "465436"
+}
+
+### Pegar User pelo ID. 
+GET http://localhost:3003/user/746ed048-9017-4cc8-afe0-f7791e5f2597
+
+
+//************************** POST ENTITY **************************//
+
+### Criar POST 
+POST http://localhost:3003/post
+Content-Type: application/json
+
+{
+
+    "photo":"www.anyimage2.com/lalalalala.jpg", 
+    "description":"post para teste -->  id: 77504dfd-f08f-4155-bb94-c779301533db nome: Junior Rox da Silva", 
+    "type": "normal",
+    "authorId": "77504dfd-f08f-4155-bb94-c779301533db"
+}
+
+
+
+//************************** FRIENDSHIP ENTITY **************************//
+
+### add amigo pelo ID. 
+PUT http://localhost:3003/friend/add/fb427246-e984-49b8-a214-7256414f0a6a?friendId=77504dfd-f08f-4155-bb94-c779301533db
+
+### add amigo pelo ID. 
+POST http://localhost:3003/friend/add/fb427246-e984-49b8-a214-7256414f0a6a?friendId=c2616011-737f-449a-940a-28d5358574f7
+
+### deletar amigo pelo ID. 
+DELETE http://localhost:3003/friend/fb427246-e984-49b8-a214-7256414f0a6a?friendId=c2616011-737f-449a-940a-28d5358574f7
+
+
